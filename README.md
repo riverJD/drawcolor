@@ -12,6 +12,7 @@ create grid[
 ]  
 
 create class for each color on pallet
+    (or add style to id?)
     custom color function
         take RGB input (add wheel/pallete???)
         assign to new class to div and add to grid location

@@ -12,7 +12,7 @@ function createGrid(size){
 
 
     for (let i = 0; i < gridsize; i++){
-        console.log(i);
+
         const grid = document.querySelector('.canvas');
         let cell = document.createElement('div');
         cell.setAttribute(`id`,`grid${i}`);
@@ -21,18 +21,21 @@ function createGrid(size){
         if(i + 1 % size === 0){
             cell.setAttribute(`class`, 'row-head');
         }
-        
-        
-        grid.appendChild(cell);
-        
-        
+        grid.appendChild(cell); 
         gridcount++;
-        console.log(gridcount);
+        console.log(cell);
     }
 
 
-    
-
 }
 
-createGrid();
+// Scale size of pixels on grid
+function changeGridSize(size){
+    const canvas = document.querySelector('.canvas');
+    
+    canvas.style.gridTemplate = `repeat(${size}, 1fr) / repeat(${size}, 1fr)`;
+    createGrid(size);
+}
+
+
+changeGridSize(16);
