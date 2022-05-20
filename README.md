@@ -4,12 +4,11 @@
 
 to do:
 
-canvas container
-create grid[
-    create grid of divs gridsize(x*x)
-        set id of each grid to be it's 'grid location' origin top left
-        iterate over gridsize, creating one div (cell) per step. assign id of cell location
-]  
+    color.setAttribute('class', 'color-picker');
+    color.setAttribute('id', 'blue');
+    color.setAttribute('type', 'button');
+
+
 
 create class for each color on pallet
     (or add style to id?)

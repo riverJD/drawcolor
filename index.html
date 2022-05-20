@@ -21,7 +21,18 @@
                 <li id="splatter">splatter</li>
             </ul>
         </div>
-        <div class="palette">color palette</div>
+        <div class="palette" id="normal">
+            <h4>color palette</h4>
+            <ul>Pick a Color:</ul>
+            <div class="color-type" id="red">
+            <input class="color-picker" id="rgb(255, 0 ,0)" type='button'>
+            <input class="color-picker" id="rgb(236, 0, 0)" type='button'>
+            </div>
+            <div class="color-type" id="orange">
+            <input class="color-picker" id="rgb(255, 165, 0)" type='button'>
+</div>
+
+        </div>
     </div>
     <!--actual canvas starts here-->
     <div class="canvas">
@@ -29,10 +40,10 @@
     </div>
     
     <!--resize grid with a slider-->
-    <div id=resize>resize grid:
-        <input class="slider" type="range" min="2" max="48" value="16">
+    <div id=resize><p>resize grid:</p><p id="curSize"></p>
+        <input class="slider" type="range" min="8" max="100" value="16" step="2">
     </div>
-
+    <button id='clear-canvas'>CLEAR</button>
 
 
     </div>
