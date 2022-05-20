@@ -1,0 +1,21 @@
+
+body{
+    display: flex;
+    /* default */
+    background-color: rgb(236, 235, 225);
+}
+
+.canvas{
+    display: grid;
+    flex-wrap: flex;
+   
+    height: 400px;
+    width: 400px;
+    border: 1px solid red;
+}
+
+.pixel{
+    flex-basis: 100%;
+
+}
+
