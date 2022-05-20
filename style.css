@@ -20,13 +20,8 @@ body{
     grid-row: 2;
 }
 
+/* Grid Element */
 .pixel{
     background-color: white;
     border: 1px dotted black;
 }
-
-.slider::-webkit-slider-thumb {
-    appearance: square;
-
-}
-

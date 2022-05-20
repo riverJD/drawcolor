@@ -23,11 +23,15 @@ function createGrid(size){
         }
         grid.appendChild(cell); 
         gridcount++;
-        console.log(cell);
     }
 
 
 }
+
+function clearGrid(){
+    // delete grid
+}
+
 
 // Scale size of pixels on grid
 function changeGridSize(size){
@@ -37,5 +41,21 @@ function changeGridSize(size){
     createGrid(size);
 }
 
+function updateGridOnSlider(){
 
-changeGridSize(16);
+    let slider = document.querySelector('.slider');
+    slider.addEventListener('change', (e) => {
+        //console.log(e);
+        console.log(slider.value);
+        changeGridSize(slider.value);
+        
+    });
+   
+
+}
+
+updateGridOnSlider();
+
+
+
+changeGridSize(0);
