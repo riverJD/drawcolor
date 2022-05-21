@@ -9,9 +9,9 @@ to do:
         can regenerate palette based on custom colors
     ~~basic flexbox structure~~
 
-custom color function
-    take RGB input (add wheel/pallete???)
-     assign to new current seletion cell
+~~custom color function~~
+    ~~take RGB input (add wheel/pallete???)~~
+    ~~assign to new current seletion cell~~
 
 ~~listener - click or hover?~~ *toggle mode option?*
 
