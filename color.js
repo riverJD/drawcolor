@@ -3,31 +3,30 @@
 // default
 BG_COLOR = 'white';
 
+// Color that will be placed on a pixel.
+let currentColor = 'white';
+
 //  How many of *each color* to crate
 PALETTE_SIZE = 6;
 PALETTE_GRADIENT_PERCENTAGE = .25;
+
 // Create a grid of size x size and place on canvas
 function createGrid(size){
 
     const canvas = document.querySelector('.canvas');
-
     let gridsize = size * size;
 
     for (let i = 0; i < gridsize; i++){
-
         const grid = document.querySelector('.canvas');
         let cell = document.createElement('div');    
         cell.setAttribute('class','pixel');
-       
+
         // add ID to each cell for future manipulation
         cell.setAttribute(`id`,`grid${i}`);
-
         grid.appendChild(cell); 
     }
-
-
+    color();
 }
-changeGridSize(16);    
 
 // delete grid to make room for new one
 function clearGrid(){
@@ -78,13 +77,15 @@ function color(color){
        
         pixel.addEventListener('mouseover', (e) => {
 
-            e.target.style.backgroundColor = getColorSelection();
+            e.target.style.backgroundColor = currentColor;
         });
     });
 }
 
+// Set and display currently selected color
 function setCurrentSelection(color){
     const currentSelection = document.querySelector('#current-color');
+    currentColor = color;
     currentSelection.style.backgroundColor = color;
 }
 
@@ -100,6 +101,17 @@ function selectColorFromPalette(){
             setCurrentSelection(e.target.style.backgroundColor);
         });
     })
+    
+    const customColor = document.querySelector('#custom-picker');
+    
+    
+    customColor.addEventListener('input', () => {
+        console.log('?');
+        setCurrentSelection(customColor.value)
+        console.log(customColor.value);
+    });
+    
+    
 }
 
 
@@ -177,16 +189,18 @@ function setAttributes(element, attributes)
 }
 
 // reset background color of pixels to background color
-updateGridOnSlider();
+
 
 init();
 
 function init(){
+    changeGridSize(16);    
     createColorGradient();
     setPaletteCellColor('rgb(255, 255, 255)','black');
     colorizePalette();
     selectColorFromPalette();
     color();
+    updateGridOnSlider();
     
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      
