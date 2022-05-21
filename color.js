@@ -27,7 +27,7 @@ function createGrid(size){
 
 
 }
-changeGridSize(4);    
+changeGridSize(16);    
 
 // delete grid to make room for new one
 function clearGrid(){
@@ -54,32 +54,50 @@ function updateGridOnSlider(){
         //console.log(slider.value);
         changeGridSize(slider.value);
         onMouseOver();
-    });
-
-    
+    }); 
 }
 
-function onMouseOver(){
+// return color from current seleciton, or override.
+function getColorSelection(color){
+    
+    if (color != undefined) {
+        return color;
+        }
+        else {
+    const selectedColor = document.querySelector('#current-color').style.backgroundColor;
+    return  (selectedColor);
+        }
+    }
+    
+// Draw on canvas
+function color(color){
+    
+
     const canvas = document.querySelectorAll('.pixel');
     canvas.forEach(pixel => {
        
-        pixel.addEventListener('click', (e) => {
+        pixel.addEventListener('mouseover', (e) => {
 
-            e.target.style.backgroundColor = 'red';
+            e.target.style.backgroundColor = getColorSelection();
         });
     });
 }
 
+function setCurrentSelection(color){
+    const currentSelection = document.querySelector('#current-color');
+    currentSelection.style.backgroundColor = color;
+}
+
+
+//  Enable us to grab a color from palette and assign it as active color
 function selectColorFromPalette(){
     const selectedColor = document.querySelector('#current-color');
-    console.log(selectedColor);
     const palette = document.querySelectorAll('.color-picker');
  
     palette.forEach(color => {
-        //console.log(color);
         color.addEventListener('click', (e) => {
             console.log(e.target.style.backgroundColor);
-            selectedColor.style.backgroundColor = e.target.style.backgroundColor;
+            setCurrentSelection(e.target.style.backgroundColor);
         });
     })
 }
@@ -168,7 +186,7 @@ function init(){
     setPaletteCellColor('rgb(255, 255, 255)','black');
     colorizePalette();
     selectColorFromPalette();
-    onMouseOver();
+    color();
     
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      

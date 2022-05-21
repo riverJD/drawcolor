@@ -2,54 +2,39 @@
 
 
 
-to do:
+#to do:
 
-    color.setAttribute('class', 'color-picker');
-    color.setAttribute('id', 'blue');
-    color.setAttribute('type', 'button');
+    ~~create grid~~
+    ~~create palette~~
+        can regenerate palette based on custom colors
+    ~~basic flexbox structure~~
 
+#custom color function
+    take RGB input (add wheel/pallete???)
+     assign to new current seletion cell
 
-function selectColor(){
-    const selectedColor = document.querySelector('#current-color');
-    const palette = document.querySelectorAll('.color-picker');
-    palette.forEach(color => {
-        console.log(color);
-        color.addEventListener('click', (e) => {
-            console.log(e);
-            selectColor.style.backgroundColor = e.target.style.backgroundColor;
-        });
-    })
-}
+~~listener - click or hover?~~ *toggle mode option?*
 
-
-create class for each color on pallet
-    (or add style to id?)
-    custom color function
-        take RGB input (add wheel/pallete???)
-        assign to new class to div and add to grid location
-
-
-track mouse movement over grid
-    listener - click or hover? *toggle mode option?*
-
-create menu
-    select from fill, pen, splatter(random), or erase
+##create menu
+    ###select from fill, pen, splatter(random), or erase
 
         fill - set all cells to set color
         pen - one grid at a time/default setting
         splatter - randomize spots with set color on page
         erase - set grid color back to canvas color
 
-    create pallete
-        basic colors first
-        put them right on page
+    ###create pallet
+        ~~basic colors first~~
+        ~~put them right on page~~
         modal for custom color
 
-rainbow 
+##rainbow 
     randomly generate rbg values for each color action
     
 
-
-set canvas color (defaults: white, light beige, grey, black)
-set background color (light pastel palletes)
-grab header and footer from samurai game
+##styling
+###set canvas color (defaults: white, light beige, grey, black)
+###set background color (light pastel palletes)
+    paper, antique, white, pale blue, pale pink, lavender, etc
+~~grab header and footer from samurai game~~
+    make boilerplate from this
