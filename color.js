@@ -63,14 +63,27 @@ function onMouseOver(){
     const canvas = document.querySelectorAll('.pixel');
     canvas.forEach(pixel => {
        
-        //console.log(pixel);
-        pixel.addEventListener('mouseover', (e) => {
-            //console.log(e);
-           // console.log(e.target);
+        pixel.addEventListener('click', (e) => {
+
             e.target.style.backgroundColor = 'red';
         });
     });
 }
+
+function selectColorFromPalette(){
+    const selectedColor = document.querySelector('#current-color');
+    console.log(selectedColor);
+    const palette = document.querySelectorAll('.color-picker');
+ 
+    palette.forEach(color => {
+        //console.log(color);
+        color.addEventListener('click', (e) => {
+            console.log(e.target.style.backgroundColor);
+            selectedColor.style.backgroundColor = e.target.style.backgroundColor;
+        });
+    })
+}
+
 
 function eraseCanvasContent(){
     const canvas = document.querySelectorAll('.pixel');
@@ -116,7 +129,6 @@ function createColorGradient(){
         green = Math.round(green - (green * PALETTE_GRADIENT_PERCENTAGE));
         blue = Math.round(blue - (blue * PALETTE_GRADIENT_PERCENTAGE));
         let newColor = `rgb(${red},${green},${blue})`;
-        console.log('>>>' + newColor);
         setPaletteCellColor(e.id, newColor);
     }
     })
@@ -129,7 +141,7 @@ function createColorTypes(){
     const palette = document.querySelector('sub-palette');
 }
 
-// parses rgb(x,x,x) string and returns array of values
+// parses rgb(x,x,x) string and returns array of values for manipulation
 function getRGBValues(color){
     let rgb = color;
     rgb =  rgb.substring(4, rgb.length-1)
@@ -138,9 +150,7 @@ function getRGBValues(color){
 return rgb;
 }
     
-
-
-// So I don't have to manually sff every attribute
+// Set multiple attributes from one function call
 function setAttributes(element, attributes)
 {
     Object.entries(attributes).forEach(([key, value]) => {
@@ -157,10 +167,12 @@ function init(){
     createColorGradient();
     setPaletteCellColor('rgb(255, 255, 255)','black');
     colorizePalette();
+    selectColorFromPalette();
     onMouseOver();
+    
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      
-        console.log(e);
+        
         eraseCanvasContent();
     });
     

@@ -9,6 +9,18 @@ to do:
     color.setAttribute('type', 'button');
 
 
+function selectColor(){
+    const selectedColor = document.querySelector('#current-color');
+    const palette = document.querySelectorAll('.color-picker');
+    palette.forEach(color => {
+        console.log(color);
+        color.addEventListener('click', (e) => {
+            console.log(e);
+            selectColor.style.backgroundColor = e.target.style.backgroundColor;
+        });
+    })
+}
+
 
 create class for each color on pallet
     (or add style to id?)
