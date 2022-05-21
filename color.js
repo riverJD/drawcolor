@@ -4,8 +4,8 @@
 BG_COLOR = 'white';
 
 //  How many of *each color* to crate
-PALETTE_SIZE = 4
-PALETTE_GRADIENT_PERCENTAGE = .20;
+PALETTE_SIZE = 6
+PALETTE_GRADIENT_PERCENTAGE = .1;
 // Create a grid of size x size and place on canvas
 function createGrid(size){
 
@@ -93,13 +93,14 @@ function colorizePalette(){
 // color can be any understood html value
 function setPaletteCellColor(colorHeadID, color){
     const colorType = document.getElementById(colorHeadID);
-    //console.log(colorType);
+    //console.log(color);
     let cell = document.createElement('input');
     
     setAttributes(cell, {"class": "color-picker", "id": color, "type": "button"})
     //console.log(cell);
+    //console.log('Creating cell: ' + cell);
     colorType.appendChild(cell);
-    console.log(colorType);
+    //console.log(colorType);
     
 }
 
@@ -110,20 +111,29 @@ function createColorGradient(){
     let colors = document.querySelectorAll('.color-type');
 
     colors.forEach( e => {
-    console.log(e.id);
+    //console.log('>' + e.id);
     //console.log(getRGBValues(e.id));
     let red = getRGBValues(e.id)[0];
     let green = getRGBValues(e.id)[1];
     let blue = getRGBValues(e.id)[2];
+    console.log('red:' + red + 'green: ' + green + 'blue: '+ blue );
     
-    red = 200
-    blue = 0; 
-    green = 0;
+
+    for (let i = 0; i < PALETTE_SIZE; i++)
+    {
+        red = red - (red * PALETTE_GRADIENT_PERCENTAGE * i);
+        green = green - (green * PALETTE_GRADIENT_PERCENTAGE * i);
+        blue = blue - (blue * PALETTE_GRADIENT_PERCENTAGE * i);
+        let newColor = `rgb(${red},${green},${blue})`;
+        //console.log(newColor);
+        setPaletteCellColor(e.id, newColor);
+    }
+   
     
-    let newColor = `rgb(${red},${blue},${green})`;
-    console.log(':' + newColor);
+    //
+    //console.log('>>>' + newColor);
     
-    setPaletteCellColor(e.id, newColor);    
+    
     })
     }
 
