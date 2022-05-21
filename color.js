@@ -4,8 +4,8 @@
 BG_COLOR = 'white';
 
 //  How many of *each color* to crate
-PALETTE_SIZE = 6
-PALETTE_GRADIENT_PERCENTAGE = .1;
+PALETTE_SIZE = 6;
+PALETTE_GRADIENT_PERCENTAGE = .25;
 // Create a grid of size x size and place on canvas
 function createGrid(size){
 
@@ -27,7 +27,7 @@ function createGrid(size){
 
 
 }
-changeGridSize(16);    
+changeGridSize(4);    
 
 // delete grid to make room for new one
 function clearGrid(){
@@ -88,54 +88,46 @@ function colorizePalette(){
         color.style.backgroundColor = colorID;
     })
 }
-// This will take the master color (IE: Red, Orange, Blue, Etc) 
+// This series of functions will take the master color 
 // and attach a specified color to it's sub-palette. 
 // color can be any understood html value
 function setPaletteCellColor(colorHeadID, color){
+    
     const colorType = document.getElementById(colorHeadID);
-    //console.log(color);
     let cell = document.createElement('input');
-    
+   
     setAttributes(cell, {"class": "color-picker", "id": color, "type": "button"})
-    //console.log(cell);
-    //console.log('Creating cell: ' + cell);
     colorType.appendChild(cell);
-    //console.log(colorType);
-    
 }
 
-// This will create four cells of decending color gradient
+// This will create values to assign to a new cell and call set function
 function createColorGradient(){
     let createdCount = 0;
-
     let colors = document.querySelectorAll('.color-type');
-
     colors.forEach( e => {
-    //console.log('>' + e.id);
-    //console.log(getRGBValues(e.id));
+
     let red = getRGBValues(e.id)[0];
     let green = getRGBValues(e.id)[1];
     let blue = getRGBValues(e.id)[2];
-    console.log('red:' + red + 'green: ' + green + 'blue: '+ blue );
-    
-
-    for (let i = 0; i < PALETTE_SIZE; i++)
+      setPaletteCellColor(e.id, e.id)
+    for (let i = 1; i < PALETTE_SIZE; i++)
     {
-        red = red - (red * PALETTE_GRADIENT_PERCENTAGE * i);
-        green = green - (green * PALETTE_GRADIENT_PERCENTAGE * i);
-        blue = blue - (blue * PALETTE_GRADIENT_PERCENTAGE * i);
+        red = Math.round(red - (red * PALETTE_GRADIENT_PERCENTAGE ));
+        green = Math.round(green - (green * PALETTE_GRADIENT_PERCENTAGE));
+        blue = Math.round(blue - (blue * PALETTE_GRADIENT_PERCENTAGE));
         let newColor = `rgb(${red},${green},${blue})`;
-        //console.log(newColor);
+        console.log('>>>' + newColor);
         setPaletteCellColor(e.id, newColor);
     }
-   
-    
-    //
-    //console.log('>>>' + newColor);
-    
-    
     })
     }
+
+    //Not currently used
+function createColorTypes(){
+
+    const colorsToCreate = arguments.length;
+    const palette = document.querySelector('sub-palette');
+}
 
 // parses rgb(x,x,x) string and returns array of values
 function getRGBValues(color){
@@ -145,19 +137,7 @@ function getRGBValues(color){
          .split(',');
 return rgb;
 }
-
-
-   //let showValue = document.getElementById('rgb(236, 0, 0)')
-   //console.log(showValue.id)
-
-   //setPaletteCellColor(`rgb(236, 100, 0)`, 'blue');
     
-createColorGradient();
-
-
-//createColorGradient('#orange');
-
-
 
 
 // So I don't have to manually sff every attribute
@@ -174,8 +154,9 @@ updateGridOnSlider();
 init();
 
 function init(){
+    createColorGradient();
+    setPaletteCellColor('rgb(255, 255, 255)','black');
     colorizePalette();
-    
     onMouseOver();
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      

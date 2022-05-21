@@ -26,13 +26,29 @@ body{
     border: 1px dotted black;
 }
 
-.palette{
+.color-menu{
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
     flex: 0 0 auto;
-    width: 200px;
+    width: 230px;
     height: 400px;
     border: 3px solid #f4515e;
+}
+
+.palette{
+    display:flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.sub-palette{
+    display: flex;
+    flex-direction: column;
+    flex: 0;
+    padding:4px;
+    width: 80%;
 }
 
 input{
@@ -62,3 +78,19 @@ li{
 
 }
 
+.blackwhite{
+border: 2px solid blue;
+
+}
+
+.bw{
+    display: flex;
+    padding: 5px;
+    flex-direction: column;
+}
+
+#current-color{
+    background-color: black;
+    height: 50px;
+    width: 50px;
+}
