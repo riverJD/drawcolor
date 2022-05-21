@@ -3,9 +3,9 @@
 // default
 BG_COLOR = 'white';
 
-//  How many of *each color* to buildd
-PALETTE_SIZE = 6
-
+//  How many of *each color* to crate
+PALETTE_SIZE = 4
+PALETTE_GRADIENT_PERCENTAGE = .20;
 // Create a grid of size x size and place on canvas
 function createGrid(size){
 
@@ -79,28 +79,76 @@ function eraseCanvasContent(){
     })
 }
 
-
-function fillPalette(){
+// Set color of each cell to it's ID color
+function colorizePalette(){
     
     const palette = document.querySelectorAll('.color-picker');
-    palette.forEach(color => {
-        
+    palette.forEach(color => { 
         const colorID = color.getAttribute('id');
         color.style.backgroundColor = colorID;
     })
 }
-
-function setPaletteSelectionColor(){
-    const colorType = document.querySelector("#red");
-    let color = document.createElement('input');
+// This will take the master color (IE: Red, Orange, Blue, Etc) 
+// and attach a specified color to it's sub-palette. 
+// color can be any understood html value
+function setPaletteCellColor(colorHeadID, color){
+    const colorType = document.getElementById(colorHeadID);
+    //console.log(colorType);
+    let cell = document.createElement('input');
     
-    setAttributes(color, {"class": "color-picker", "id": 'blue', "type": "button"})
+    setAttributes(cell, {"class": "color-picker", "id": color, "type": "button"})
+    //console.log(cell);
+    colorType.appendChild(cell);
+    console.log(colorType);
+    
+}
 
-    colorType.appendChild(color);
+// This will create four cells of decending color gradient
+function createColorGradient(){
+    let createdCount = 0;
+
+    let colors = document.querySelectorAll('.color-type');
+
+    colors.forEach( e => {
+    console.log(e.id);
+    //console.log(getRGBValues(e.id));
+    let red = getRGBValues(e.id)[0];
+    let green = getRGBValues(e.id)[1];
+    let blue = getRGBValues(e.id)[2];
+    
+    red = 200
+    blue = 0; 
+    green = 0;
+    
+    let newColor = `rgb(${red},${blue},${green})`;
+    console.log(':' + newColor);
+    
+    setPaletteCellColor(e.id, newColor);    
+    })
+    }
+
+// parses rgb(x,x,x) string and returns array of values
+function getRGBValues(color){
+    let rgb = color;
+    rgb =  rgb.substring(4, rgb.length-1)
+         .replace(/ /g, '')
+         .split(',');
+return rgb;
 }
 
 
-setPaletteSelectionColor();
+   //let showValue = document.getElementById('rgb(236, 0, 0)')
+   //console.log(showValue.id)
+
+   //setPaletteCellColor(`rgb(236, 100, 0)`, 'blue');
+    
+createColorGradient();
+
+
+//createColorGradient('#orange');
+
+
+
 
 // So I don't have to manually sff every attribute
 function setAttributes(element, attributes)
@@ -116,7 +164,8 @@ updateGridOnSlider();
 init();
 
 function init(){
-    fillPalette();
+    colorizePalette();
+    
     onMouseOver();
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      
