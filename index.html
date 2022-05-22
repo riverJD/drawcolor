@@ -19,25 +19,21 @@
     <div class="project-content">
     <div class="menu">
         <div class="buttons">
-            <h2>buttons</h2>
+            <h2>tools</h2>
             <ul class="tools">
-                <li><input type="image" id="penimg" alt="pen tool" src="./img/pen.png">
-                <button id="pen">pen</button></li>
-                <li><input type="image" id="brushimg" alt="brush tool" src="./img/brushoff.png">
-                    <button id="brush-mode">brush mode</button></li>
-                <li><input type="image" id="fillimg" alt="fill tool" src="./img/filloff.png">
-                    <button id="fill">fill</buttin></li>
-                <li><input type="image" id="eraseimg" alt="eraser tool" src="./img/eraseroff.png">
-                    <button id="eraser">erase</button></li>
-                <li><input type="image" id="rainbowimg" alt="rainbow tool" src="./img/rainbowoff.png">
-                    <button id="rainbow">rainbow</button></li>
+                <li class="tool"><div><button id="pen">pen</button></div><div><img src="./img/brush.png"></div></li>
+                <li class="tool"><button id="brush-mode">brush mode</button></li>
+                <li class="tool"><button id="fill">fill</buttin></li>
+                <li class="tool"><button id="eraser">erase</button></li>
+                <li class="tool"><button id="rainbow">rainbow</button></li>
             </ul>
         </div>
+        <div class='title'><h3>palette</h3></div>
         <div class="color-menu" id="normal">
             <div class="palette">
 
             <div class="sub-palette"> 
-                <h4>color palette</h4>
+               
                 
             <!-- DEFAULT VALUES-->
             <div class="color-type" id="rgb(255, 0, 0)">       
@@ -56,12 +52,13 @@
             </div>
             <div class="color-type" id="rgb(127, 0, 255)">
             </div>
+            <div id='custom'>Custom: <input type="color" id="custom-picker"></div>
             </div>
             <div class="bw color-type" id="rgb(255, 255, 255)"><button id="abort">?</button>
             </div>
             </div>
             <!-- CUSTOMER COLOR INPUT-->
-            <div id='custom'>Custom: <input type="color" id="custom-picker"></div>
+           
             <!-- CURRENTLY SELECTED COLOR-->
             <p>Current Selection</p><div id='current-color'></div>
         </div>

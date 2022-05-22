@@ -100,24 +100,29 @@ a:visited{
     padding: 10px;
     flex: 0 0 auto;
     width: 230px;
-    height: 400px;
+    height: 350px;
+    
     border: 5px rgb(105, 104, 104);
     border-style: solid;
     border-radius: 1px;
-    background-color: beige
-  
+    background-color: beige;
+
+    font-style: oblique;
+    font-weight: 600;
 }
 
 .palette{
     display:flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-bottom: 10px;
-    border: 2px red
+    border: 3px red double;
+
 }
 
 .sub-palette{
     display: flex;
     flex-direction: column;
+    border: 2px solid purple;
     flex: 0;
     padding:4px;
     width: 80%;
@@ -192,6 +197,14 @@ border: 2px solid blue;
     
 }
 
+.menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border: 1px red solid;
+    justify-content: flex-start;
+}
+
 button{
     border-style: outset;
     background-color: #dcedf5;
@@ -199,19 +212,55 @@ button{
     border-radius: 8px;
 }
 
+.buttons{
+    display: flex;
+    align-items: center;
+    border: 2px dotted blue;
+    
+}
+
+.buttons h2{
+    font-weight: 200;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+.title{
+    flex: 1;
+    font-weight: 200;
+    align-self: flex-start;
+    letter-spacing: 1em;
+}
+
+
 .tools{
     display: flex;
-    width: 230px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 160px;
+    height: 200px;
+    margin: 0;
     padding: 10px;
+    
     border: 5px rgb(105, 104, 104);
     border-style: solid;
     border-radius: 1px;
     background-color: beige
 }
 
-.tools input{
-    height: 50px;
+
+.tools img{
+    height: 25px;
 }
+
+.tool{
+    display: flex;
+
+
+    justify-content: space-between;
+}
+
+
 
 .inactive{
     font-style: oblique;

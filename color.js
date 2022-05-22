@@ -96,16 +96,12 @@ function disableBrushMode(){
     const canvas = document.querySelectorAll('.brush');
     canvas.forEach(pixel => {    
         pixel.classList.remove('brush');
-        //console.log(pixel);
+        console.log(pixel);
     })
 
     const brush = document.querySelector('#brush-mode');
-        const brushimg = document.querySelector('#brushimg');
-
     brush.classList.remove('toggle');
     brushModeActive = false;
-    brushimg.src = './img/brushoff.png';
-    
 }
 
 function toggleBrushMode(){
@@ -116,10 +112,8 @@ function toggleBrushMode(){
     })
     
     const brush = document.querySelector('#brush-mode');
-    const brushimg = document.querySelector('#brushimg');
     brush.classList.add('toggle');
-    console.log(brush.parentElement.src);
-    brushimg.src = './img/brushon.png';
+    console.log(brush.src);
     brushModeActive = true;
 }
 
@@ -132,9 +126,11 @@ function disableEraseMode(){
 
 function toggleEraseMode(){
 
+    disableRainbow();
     document.querySelector('#eraser').classList.add('toggle');
     currentColor = BG_COLOR;
     eraseModeActive = true;
+    
 }
 
 function disableRainbow(){
@@ -144,7 +140,7 @@ function disableRainbow(){
 }
 
 function toggleRainbow(){
-    
+    disableEraseMode();
     document.querySelector('#rainbow').classList.add('toggle');
     rainbowModeActive = true;
 }
@@ -160,7 +156,7 @@ function eraseCanvasContent(){
 }
 // Fill canvas from 'Current Selection' or override
 function fill(color){
-    //console.log('filling');
+    console.log('filling');
     if (color == undefined){
         fill(currentColor);
     }
@@ -222,7 +218,7 @@ function selectColorFromPalette(){
     customColor.addEventListener('input', () => {
         //console.log('?');
         setCurrentSelection(customColor.value)
-        //console.log(customColor.value);
+        console.log(customColor.value);
     });
 }
 // Set color of each cell to it's ID color
@@ -335,7 +331,7 @@ function init(){
         disableEraseMode();
     });
     
-    const brush = document.querySelector('#brushimg');
+    const brush = document.querySelector('#brush-mode');
     brush.addEventListener('click', () => {
         (brushModeActive ? disableBrushMode(): toggleBrushMode())       
     });
