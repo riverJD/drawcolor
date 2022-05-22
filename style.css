@@ -13,9 +13,19 @@ body{
 
 }
 
-p, h3{
+p, h3, h2{
     margin: 5px;
 }
+
+.menustyle{
+    border: 5px #576e79;
+    border-style:solid;
+    box-shadow: 5px 5px #93acb8;
+    border-radius: 3px;
+    background-color: beige
+}
+
+
 
 header,
 footer{
@@ -99,12 +109,7 @@ a:visited{
     flex: 0 0 auto;
     height: 320px;
     
-    border: 5px #576e79;
-    border-style:solid;
-    box-shadow: 5px 5px #93acb8;
-    
-    border-radius: 3px;
-    background-color: beige;
+
 
     font-style: oblique;
     font-weight: 600;
@@ -201,8 +206,10 @@ ul{
 }
 
 .lower-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex: 1;
-    background-color: #dcedf5;
 }
 
 button{
@@ -210,6 +217,7 @@ button{
     background-color: #dcedf5;
     font-weight: 600;
     border-radius: 8px;
+    height: 24px;
 }
 
 .buttons{
@@ -240,11 +248,7 @@ button{
     margin: 0;
     padding: 5%;
 
-    border: 5px #576e79;
-    border-style:solid;
-    box-shadow: 5px 5px #93acb8;
-    border-radius: 3px;
-    background-color: beige
+
 }
 
 .title{
@@ -270,7 +274,7 @@ button{
 
 .tool button{
     margin-right: auto;
-    height: 24px;
+
     width: 5em;
 
 }

@@ -1,12 +1,13 @@
-// Color that will be placed on a pixel.
+// Color that will be placed on a pixel. Sometimes we want this to 
+// differ from the 'selected color'.
 let currentColor = 'black';
-// Default draw mode
-let currentMode = 'click';
+
 //  How many children (color gradients) to create what what gradient
 let interval;
 let brushModeActive = false;
 let eraseModeActive = false;
 let rainbowModeActive;
+let gridActive = false;
 const canvas = document.querySelector('.canvas');
 
 const PALETTE_SIZE = 8;
@@ -17,8 +18,8 @@ let BG_COLOR = 'rgb(255, 255, 255)';
 
 // #Canvas generation functions
 function clearGrid(){
-    const grid = document.querySelectorAll('.pixel');
-    grid.forEach(e => e.remove());
+    
+    getPixels().forEach(pixel => pixel.remove());
 }
 // Create a grid of size x size and place on canvas
 function createGrid(size){
@@ -36,7 +37,9 @@ function createGrid(size){
     }
     if(brushModeActive) {
         toggleBrushMode();
+        
     }
+    if(gridActive) { toggleGrid()};
 }
 // Scale size of pixels on grid
 function changeGridSize(size){
@@ -61,18 +64,30 @@ function updateGridOnSlider(){
 function updateCanvasColor(color){
     BG_COLOR = color;
 }
-function toggleGrid(){
+function toggleGrid(mode){
+    
+    const gridbtn = document.querySelector('#gridbtn');
 
+    if (mode == 'off'){
+        gridbtn.classList.remove('toggle');
+        getPixels().forEach(pixel => {
+        pixel.classList.remove('pixelgrid');
+        gridActive = false;
+        });
+    }
+    else {
+    gridbtn.classList.add('toggle');
+    getPixels().forEach(pixel => {
+        pixel.classList.add('pixelgrid');
+        gridActive = true;
+        });        
+    }
 }
-
-
-
 
 // #Draw related functions
 function draw(type){
 
-    const pixels = document.querySelectorAll('.pixel');
-    pixels.forEach(pixel => {
+    getPixels().forEach(pixel => {
        
         pixel.addEventListener('click', (e) => colorPixel(e.target));
         pixel.addEventListener('mouseover', (e) => {
@@ -115,13 +130,11 @@ function disableBrushMode(){
 
 function toggleBrushMode(){
     
-     const canvas = document.querySelectorAll('.pixel');
-     canvas.forEach(pixel => {
+     getPixels().forEach(pixel => {
         pixel.classList.add('brush');
     })
     const brush = document.querySelector('#brush-mode');
     brush.classList.add('toggle');
-    console.log(brush.src);
     brushModeActive = true;
 }
 
@@ -177,27 +190,25 @@ function colorToolset(){
 
 // Clear entire canvas 
 function eraseCanvasContent(){
-    const canvas = document.querySelectorAll('.pixel');
-    canvas.forEach(pixel => {
+    getPixels().forEach(pixel => {
         pixel.style.backgroundColor = BG_COLOR;
     })
 }
 // Fill canvas from 'Current Selection' or override
 function fill(color){
     console.log('filling');
+
+    // Allow override
     if (color == undefined){
         fill(currentColor);
     }
 
-   pixels = document.querySelectorAll('.pixel');
-   //console.log(canvas);
-   pixels.forEach((pixel) => {
+   getPixels().forEach((pixel) => {
        if ((getColor(pixel.id)) == BG_COLOR){
            //console.log(getColor(pixel.id) + " " +BG_COLOR);
            setColor(pixel.id, color);
        }
     }
-       
        );
 }
 
@@ -286,6 +297,8 @@ function createColorGradient(){
         setPaletteCellColor(e.id, newColor);
     }
     })
+    // need to add black to greyscale palette
+    setPaletteCellColor('rgb(255, 255, 255)','black');
     }
 // Will generate a series of 'parent' cells for palette. 
 function createColorTypes(){
@@ -318,7 +331,8 @@ function getRandomColorValue(min, max) {
 }
 
 function getPixels(){
-    
+    return (document.querySelectorAll('.pixel'));
+
 }
 
 
@@ -331,13 +345,14 @@ function init(){
     
     changeGridSize(4);    
     createColorGradient();
-    setPaletteCellColor('rgb(255, 255, 255)','black');
+    
     colorizePalette();
     selectColorFromPalette();
     setRainbowTool()
     setCurrentSelection(currentColor);
     updateGridOnSlider();
     colorToolset();
+    toggleGrid();
     draw();
     //console.log(getColor('grid2'));
     // Create listener to clear palette (should seperate this out?)
@@ -384,8 +399,7 @@ function init(){
                 (rainbowModeActive ? disableRainbow(): toggleRainbow())
                 break;
             case 'e':
-                (eraseModeActive ? disableEraseMode() : toggleEraseMode());
-
+              (eraseModeActive ? disableEraseMode() : toggleEraseMode());
        }
 
     });

@@ -20,7 +20,7 @@
     <div class="menu">
         <div class="buttons">
             <h2>tools</h2>
-            <ul class="tools">
+            <ul class="tools menustyle">
                 <li class="tool"><button id="pen">pen</button>
                 <div class='color-picker current-color' id="black"></div></li>
                 <li class="tool"><button id="brush-mode">brush</button>
@@ -46,7 +46,7 @@
             </ul>
         </div>
         <div class='title'><h3>palette</h3></div>
-        <div class="color-menu" id="normal">
+        <div class="color-menu menustyle" id="normal">
             <div class="palette">
 
             <div class="sub-palette"> 
@@ -86,9 +86,9 @@
     </div>
     
     <!--resize grid with a slider-->
-    <div class="lower-menu">
+    <div class="lower-menu menustyle"><div><button id="gridbtn">Grid</button></div>
     <div id=resize><p>resize grid:</p><p id="curSize"></p>
-        <input class="slider" type="range" min="8" max="100" value="16" step="4">
+    <input class="slider" type="range" min="4" max="100" value="16" step="4">
     </div>
     <button id='clear-canvas'>CLEAR</button>
 </div>
