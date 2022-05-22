@@ -78,6 +78,9 @@ a:visited{
 
 }
 
+
+
+
 .pixel row-start{
     grid-column: 2;
     grid-row: 2;
@@ -149,6 +152,7 @@ border: 2px solid blue;
 
 }
 
+
 .bw{
     display: flex;
     padding: 5px;
@@ -181,9 +185,28 @@ border: 2px solid blue;
     
 }
 
+button{
+    border-style: outset;
+    background-color: #dcedf5;
+    font-weight: 600;
+}
+
+
 .inactive{
     font-style: oblique;
     opacity: 20%;
+}
+
+button:active{
+    font-style: italic;
+    border-style:inset;
+    background-color: #a5cbdd;
+}
+
+.toggle{
+    font-style: italic;
+    border-style:inset;
+    background-color: #a5cbdd;
 }
 
 footer{

@@ -4,7 +4,10 @@ let currentColor = 'black';
 let currentMode = 'click';
 //  How many children (color gradients) to create what what gradient
 
-
+let brushModeActive = false;
+let eraseModeActive = false;
+let rainbowModeActive;
+const canvas = document.querySelector('.canvas');
 
 PALETTE_SIZE = 8;
 PALETTE_GRADIENT_PERCENTAGE = .23;
@@ -21,7 +24,7 @@ function clearGrid(){
 // Create a grid of size x size and place on canvas
 function createGrid(size){
 
-    const canvas = document.querySelector('.canvas');
+    //const canvas = document.querySelector('.canvas');
     let gridsize = size * size;
 
     for (let i = 0; i < gridsize; i++){
@@ -32,12 +35,14 @@ function createGrid(size){
 ;
         grid.appendChild(cell); 
     }
-    //draw();
+    if(brushModeActive) {
+        toggleBrushMode();
+    }
 }
 // Scale size of pixels on grid
 function changeGridSize(size){
     clearGrid();
-    const canvas = document.querySelector('.canvas');
+    //const canvas = document.querySelector('.canvas');
     
     document.querySelector('#curSize').textContent = `${size} x ${size}`;
     canvas.style.gridTemplate = `repeat(${size}, 1fr) / repeat(${size}, 1fr)`;
@@ -55,13 +60,11 @@ function updateGridOnSlider(){
     }); 
 }
 
-
 // #Draw related functions
 function draw(type){
 
-    
-    const canvas = document.querySelectorAll('.pixel');
-    canvas.forEach(pixel => {
+    const pixels = document.querySelectorAll('.pixel');
+    pixels.forEach(pixel => {
        
         pixel.addEventListener('click', (e) => colorPixel(e.target));
         pixel.addEventListener('mouseover', (e) => {
@@ -76,29 +79,70 @@ function draw(type){
     }
 
 function colorPixel(pixel){
+
+    if (rainbowModeActive){
+        
+        pixel.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
+    }
+    else {
     pixel.style.backgroundColor = currentColor;
+    }
+
 }
 
 function disableBrushMode(){
+    
 
-    console.log('removing brush mode');
     const canvas = document.querySelectorAll('.brush');
-    canvas.forEach(pixel => {
-        
+    canvas.forEach(pixel => {    
         pixel.classList.remove('brush');
         console.log(pixel);
     })
+
+    const brush = document.querySelector('#brush-mode');
+    brush.classList.remove('toggle');
+    brushModeActive = false;
 }
 
-function enableBrushMode(){
+function toggleBrushMode(){
 
-    console.log("brushy");
      const canvas = document.querySelectorAll('.pixel');
      canvas.forEach(pixel => {
-   
         pixel.classList.add('brush');
-     })
+    })
+    
+    const brush = document.querySelector('#brush-mode');
+    brush.classList.add('toggle');
+    brushModeActive = true;
 }
+
+function disableEraseMode(){
+
+    document.querySelector('#eraser').classList.remove('toggle');
+    currentColor = getColor('current-color');
+    eraseModeActive = false;
+}
+
+function toggleEraseMode(){
+
+    document.querySelector('#eraser').classList.add('toggle');
+    currentColor = BG_COLOR;
+    eraseModeActive = true;
+}
+
+function disableRainbow(){
+    document.querySelector('#rainbow').classList.remove('toggle');
+    currentColor = getColor('current-color');
+    rainbowModeActive = false;
+}
+
+function toggleRainbow(){
+    
+    document.querySelector('#rainbow').classList.add('toggle');
+    rainbowModeActive = true;
+}
+
+
 
 // Clear entire canvas 
 function eraseCanvasContent(){
@@ -114,9 +158,9 @@ function fill(color){
         fill(currentColor);
     }
 
-   canvas = document.querySelectorAll('.pixel');
+   pixels = document.querySelectorAll('.pixel');
    //console.log(canvas);
-   canvas.forEach((pixel) => {
+   pixels.forEach((pixel) => {
        if ((getColor(pixel.id)) == BG_COLOR){
            console.log(getColor(pixel.id) + " " +BG_COLOR);
            setColor(pixel.id, color);
@@ -126,9 +170,7 @@ function fill(color){
        );
 }
 
-function erase(){
-    currentColor = BG_COLOR;
-}
+
 
 function resetBrush(){
     //console.log(currentColor);
@@ -165,6 +207,7 @@ function selectColorFromPalette(){
         color.addEventListener('click', (e) => {
             console.log(e.target.style.backgroundColor);
             setCurrentSelection(e.target.style.backgroundColor);
+            disableEraseMode();
         });
     }) 
     // Enable custom colors
@@ -243,7 +286,11 @@ function setAttributes(element, attributes)
     });
 }
 
-
+function getRandomColorValue(min, max) {
+     min = Math.ceil(0);
+     max = Math.floor(255);
+    return Math.floor(Math.random() * (max - min) + min);
+}
 init();
 
 // Wake up helpers and generate default grid and palette.
@@ -270,21 +317,26 @@ function init(){
     
     const eraser = document.querySelector('#eraser');
 
-    eraser.addEventListener('click', () => erase());
+    eraser.addEventListener('click', () => {
+        (eraseModeActive ? disableEraseMode() : toggleEraseMode());
+    });
 
     const pen = document.querySelector('#pen');
     pen.addEventListener('click', () => {
         resetBrush();
         disableBrushMode();
+        disableEraseMode();
     });
     
-
     const brush = document.querySelector('#brush-mode');
     brush.addEventListener('click', () => {
-        resetBrush();
-        enableBrushMode();           
+        (brushModeActive ? disableBrushMode(): toggleBrushMode())       
     });
-   
     
+    const rainbow = document.querySelector('#rainbow');
+    rainbow.addEventListener('click', () => {
+        (rainbowModeActive ? disableRainbow(): toggleRainbow())
+    });
+
 }
 
