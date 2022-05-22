@@ -10,13 +10,23 @@ body{
     min-height: 100vh;    
     /* default */
     background-color: rgb(236, 235, 225);
-
 }
 
-p, h3, h2{
+/* kill margin on texts */
+p, h4, h3, h2{
     margin: 5px;
 }
 
+
+
+.text{
+    font-weight: 900;
+    font-style: oblique;
+    color: rgb(48, 48, 48);
+}
+
+
+/* generic menu style */
 .menustyle{
     border: 5px #576e79;
     border-style:solid;
@@ -24,7 +34,6 @@ p, h3, h2{
     border-radius: 3px;
     background-color: beige
 }
-
 
 
 header,
@@ -42,7 +51,14 @@ header{
     border-bottom: 12px solid #93acb8;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    
+}
+
+footer{
+    justify-content: center;
+    margin-top: auto;
+    border-top: 10px solid #93acb8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .logo{
@@ -84,10 +100,12 @@ a:visited{
 .canvas{
     display: grid;
     border: 3px grey double;
+
     /* grid-template: repeat(4, 1fr) / repeat(4, 1fr);*/
    
     height: 400px;
     width: 400px;
+    margin: 20px;
 
 }
 
@@ -140,11 +158,9 @@ ul{
 
 
 #clear-canvas{
-    height: 20px;
-    width: 60px;
     background-color: antiquewhite;
     padding: 2px;
-    border: 1px solid red;
+    border: 1px solid rgb(167, 0, 0);
 }
 
 .color-picker{
@@ -161,7 +177,7 @@ ul{
 
 
 
-.bw{
+.greyscale{
     display: flex;
     padding: 5px;
     flex-direction: column;
@@ -193,7 +209,7 @@ ul{
     
 }
 
-.menu{
+.left-menu{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -205,11 +221,26 @@ ul{
     padding-right: 10px;
 }
 
-.lower-menu{
+.right-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    background-color: #dcedf5;
+
+    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+
+
+
+}
+
+.lower-right-menu{
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex: 1;
 }
 
 button{
@@ -285,6 +316,20 @@ button{
     
 }
 
+
+#splatter{
+    display: flex;
+    flex: 1;
+    justify-content: space-around;;
+}
+
+
+
+.splatter{
+    width: 1em;
+}
+
+
 #brushColor{
     width: calc(100% - 4em);
 
@@ -307,13 +352,6 @@ button:active{
     background-color: #a5cbdd;
 }
 
-footer{
-    justify-content: center;
-    margin-top: auto;
-    border-top: 10px solid #93acb8;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
 
 .footer-text{
     display: flex;

@@ -17,9 +17,9 @@
         </ul>
         </div><h3 class='title'>Color</h3></header>
     <div class="project-content">
-    <div class="menu">
+    <div class="left-menu">
         <div class="buttons">
-            <h2>tools</h2>
+            <h2 class="text">tools</h2>
             <ul class="tools menustyle">
                 <li class="tool"><button id="pen">pen</button>
                 <div class='color-picker current-color' id="black"></div></li>
@@ -31,7 +31,7 @@
                     <div id='arrow'>&#187;&#187;</div> 
                     <div class='color-picker canvasColor' id='fillColor'></div></li>
                 
-                <li class="tool"><button id="eraser">erase</button>
+                <li class="tool"><button id="eraserbtn">erase</button>
                     <div class='color-picker canvasColor' id="eraseColor"></div></li>
                 
 
@@ -43,9 +43,17 @@
                     <div class='color-picker rainbow'></div>        
                     <div class='color-picker rainbow'></div>
                 </li>
+                <li class="tool">
+                    <button id="splatterbtn">splatter</button>
+                    <div id='splatter'>
+                    <div class='color-picker rainbow splatter'></div>
+                    <div class='color-picker rainbow splatter'></div>
+                    <div class='color-picker rainbow splatter'></div>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div class='title'><h3>palette</h3></div>
+        <div class='title'><h3 class="text">palette</h3></div>
         <div class="color-menu menustyle" id="normal">
             <div class="palette">
 
@@ -71,7 +79,7 @@
             </div>
             <div id='custom'>Custom: <input type="color" id="custom-picker"></div>
             </div>
-            <div class="bw color-type" id="rgb(255, 255, 255)"><button id="abort">?</button>
+            <div class="greyscale color-type" id="rgb(255, 255, 255)"><button id="abort">?</button>
             </div>
             </div>
             <!-- CUSTOMER COLOR INPUT-->
@@ -86,11 +94,15 @@
     </div>
     
     <!--resize grid with a slider-->
-    <div class="lower-menu menustyle"><div><button id="gridbtn">Grid</button></div>
-    <div id=resize><p>resize grid:</p><p id="curSize"></p>
+    <div class="right-menu">
+    <div class="menustyle">
+    <div><h2 class="text">canvas</h2></div><div><button id="gridbtn">Grid</button></div>
+    <div id='resize'><p>resize:</p><p id="curSize"></p>
     <input class="slider" type="range" min="4" max="100" value="16" step="4">
     </div>
     <button id='clear-canvas'>CLEAR</button>
+</div>
+<div class="lower-right-menu menustyle"><h3 class="text">canvas<br>color</h3><div>c c c c</div></div>
 </div>
 
     </div>

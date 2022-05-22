@@ -139,14 +139,14 @@ function toggleBrushMode(){
 }
 
 function disableEraseMode(){
-    document.querySelector('#eraser').classList.remove('toggle');
+    document.querySelector('#eraserbtn').classList.remove('toggle');
     currentColor = getColor('current-color');
     eraseModeActive = false;
 }
 
 function toggleEraseMode(){
     disableRainbow();
-    document.querySelector('#eraser').classList.add('toggle');
+    document.querySelector('#eraserbtn').classList.add('toggle');
     currentColor = BG_COLOR;
     eraseModeActive = true;
 }
@@ -365,7 +365,7 @@ function init(){
     //console.log(fillBtn);
     fillBtn.addEventListener('click', () => fill());
     
-    const eraser = document.querySelector('#eraser');
+    const eraser = document.querySelector('#eraserbtn');
 
     eraser.addEventListener('click', () => {
         (eraseModeActive ? disableEraseMode() : toggleEraseMode());
@@ -387,6 +387,11 @@ function init(){
     rainbow.addEventListener('click', () => {
         (rainbowModeActive ? disableRainbow(): toggleRainbow())
     });
+
+    const gridlines = document.querySelector('#gridbtn');
+    gridlines.addEventListener('click', () => {
+        (gridActive ? toggleGrid('off') : toggleGrid('on'));
+    })
 
     const keyboard = window.addEventListener('keydown', (e) => {
         console.log(e.key);
