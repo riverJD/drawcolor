@@ -275,8 +275,8 @@ button{
 
 .tool{
     background-color: #e6f1f7;
-
-    border-radius: 8px;
+    
+  
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -292,7 +292,9 @@ button{
     
 }
 
-
+#brushColor{
+    width: 100%;
+}
 
 .inactive{
     font-style: oblique;

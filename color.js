@@ -9,14 +9,13 @@ let eraseModeActive = false;
 let rainbowModeActive;
 const canvas = document.querySelector('.canvas');
 
-PALETTE_SIZE = 8;
-PALETTE_GRADIENT_PERCENTAGE = .23;
-//BG_COLOR = 'rgb(255, 255, 255)';
-BG_COLOR = 'white';
+const PALETTE_SIZE = 8;
+const PALETTE_GRADIENT_PERCENTAGE = .23;
+let BG_COLOR = 'rgb(255, 255, 255)';
 
-// #Grid generation functions
 
-// Delete grid to make room for new one
+
+// #Canvas generation functions
 function clearGrid(){
     const grid = document.querySelectorAll('.pixel');
     grid.forEach(e => e.remove());
@@ -58,6 +57,9 @@ function updateGridOnSlider(){
         changeGridSize(slider.value);
         draw();
     }); 
+}
+function updateCanvasColor(color){
+    BG_COLOR = color;
 }
 
 // #Draw related functions
@@ -212,9 +214,12 @@ function setColor(cellID, color){
 }
 // Set 'Current Selection' to specified color
 function setCurrentSelection(color){
-    const currentSelection = document.querySelector('.current-color');
     currentColor = color;
-    currentSelection.style.backgroundColor = color;
+    const currentSelection = document.querySelectorAll('.current-color');
+    currentSelection.forEach(cell => {
+        cell.style.backgroundColor = color;
+    })
+   // currentSelection.style.backgroundColor = color;
 }
 // Enable us to grab a color from palette and assign it to Current Selection
 function selectColorFromPalette(){
