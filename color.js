@@ -61,6 +61,12 @@ function updateGridOnSlider(){
 function updateCanvasColor(color){
     BG_COLOR = color;
 }
+function toggleGrid(){
+
+}
+
+
+
 
 // #Draw related functions
 function draw(type){
@@ -156,22 +162,19 @@ function setRainbowTool(){
     
         cell.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
 });
-
-  
 }
 
-
+// Sets color of tool icons to match BG color (ex: erase tool reflects proper bg color)
 function colorToolset(){
     const toolsCanvas = document.querySelectorAll('.canvasColor');
     toolsCanvas.forEach(cell => {
         console.log(BG_COLOR);
         cell.style.backgroundColor = BG_COLOR;
     });
-
     const toolsCurrent = document.querySelectorAll
-
 }
-colorToolset();
+
+
 // Clear entire canvas 
 function eraseCanvasContent(){
     const canvas = document.querySelectorAll('.pixel');
@@ -290,9 +293,9 @@ function createColorTypes(){
     const colorsToCreate = arguments.length;
     const palette = document.querySelector('sub-palette');
 }
-// parses rgb(x,x,x) string and returns array of values for manipulation
 
 // #Helper functions
+// parses rgb(x,x,x) string and returns array of values for manipulation
 function getRGBValues(color){
     let rgb = color;
     rgb =  rgb.substring(4, rgb.length-1)
@@ -313,6 +316,14 @@ function getRandomColorValue(min, max) {
      max = Math.floor(255);
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+function getPixels(){
+    
+}
+
+
+
+
 init();
 
 // Wake up helpers and generate default grid and palette.
@@ -326,6 +337,7 @@ function init(){
     setRainbowTool()
     setCurrentSelection(currentColor);
     updateGridOnSlider();
+    colorToolset();
     draw();
     //console.log(getColor('grid2'));
     // Create listener to clear palette (should seperate this out?)
@@ -361,5 +373,21 @@ function init(){
         (rainbowModeActive ? disableRainbow(): toggleRainbow())
     });
 
+    const keyboard = window.addEventListener('keydown', (e) => {
+        console.log(e.key);
+
+        switch(e.key){
+            case 'b': 
+                (brushModeActive ? disableBrushMode(): toggleBrushMode())       
+                break;
+            case 'r': 
+                (rainbowModeActive ? disableRainbow(): toggleRainbow())
+                break;
+            case 'e':
+                (eraseModeActive ? disableEraseMode() : toggleEraseMode());
+
+       }
+
+    });
 }
 
