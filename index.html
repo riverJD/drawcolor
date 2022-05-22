@@ -22,24 +22,27 @@
             <h2>tools</h2>
             <ul class="tools">
                 <li class="tool"><button id="pen">pen</button>
-                <div class='color-picker' id="black"></div></li>
+                <div class='color-picker current-color' id="black"></div></li>
                 
                 <li class="tool"><button id="fill">fill</button>
-                    <sp></sp><div class="color-picker" id="white"></div>
+                    <sp></sp><div class="color-picker current-color" id="red"></div>
                     <div id='arrow'>&#187;&#187;</div> 
-                    <div class='color-picker canvasColor' id='black'></div></li>
+                    <div class='color-picker canvasColor' id='fillColor'></div></li>
                 
                 <li class="tool"><button id="eraser">erase</button>
-                    <div class='color-picker canvasColor' id="white"></div></li>
+                    <div class='color-picker canvasColor' id="eraseColor"></div></li>
                 
                 <li class="tool"><button id="brush-mode">brush</button>
-                    <div class='color-picker canvasColor' id='blue'></div></li>
+                    <div class='color-picker canvasColor'></div></li>
 
                 <li class="tool"><button id="rainbow">rainbow</button>
                     <div class='color-picker rainbow'></div>
                     <div class='color-picker rainbow'></div>
                     <div class='color-picker rainbow'></div>
-                    <div class='color-picker rainbow'></div></li>
+                    <div class='color-picker rainbow'></div>
+                    <div class='color-picker rainbow'></div>        
+                    <div class='color-picker rainbow'></div>
+                </li>
             </ul>
         </div>
         <div class='title'><h3>palette</h3></div>
@@ -74,7 +77,7 @@
             <!-- CUSTOMER COLOR INPUT-->
            
             <!-- CURRENTLY SELECTED COLOR-->
-            <p>Current Selection</p><div id='current-color'></div>
+            <p>Current Selection</p><div class='current-color' id='current-color'></div>
         </div>
     </div>
     <!--actual canvas starts here-->

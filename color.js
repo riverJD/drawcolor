@@ -3,7 +3,7 @@ let currentColor = 'black';
 // Default draw mode
 let currentMode = 'click';
 //  How many children (color gradients) to create what what gradient
-
+let interval;
 let brushModeActive = false;
 let eraseModeActive = false;
 let rainbowModeActive;
@@ -11,8 +11,8 @@ const canvas = document.querySelector('.canvas');
 
 PALETTE_SIZE = 8;
 PALETTE_GRADIENT_PERCENTAGE = .23;
-BG_COLOR = 'rgb(255, 255, 255)';
-
+//BG_COLOR = 'rgb(255, 255, 255)';
+BG_COLOR = 'white';
 
 // #Grid generation functions
 
@@ -90,8 +90,9 @@ function colorPixel(pixel){
 
 }
 
+// # Toolbox functions
+
 function disableBrushMode(){
-    
 
     const canvas = document.querySelectorAll('.brush');
     canvas.forEach(pixel => {    
@@ -105,12 +106,11 @@ function disableBrushMode(){
 }
 
 function toggleBrushMode(){
-
+    
      const canvas = document.querySelectorAll('.pixel');
      canvas.forEach(pixel => {
         pixel.classList.add('brush');
     })
-    
     const brush = document.querySelector('#brush-mode');
     brush.classList.add('toggle');
     console.log(brush.src);
@@ -118,39 +118,58 @@ function toggleBrushMode(){
 }
 
 function disableEraseMode(){
-
     document.querySelector('#eraser').classList.remove('toggle');
     currentColor = getColor('current-color');
     eraseModeActive = false;
 }
 
 function toggleEraseMode(){
-
     disableRainbow();
     document.querySelector('#eraser').classList.add('toggle');
     currentColor = BG_COLOR;
     eraseModeActive = true;
-    
 }
 
 function disableRainbow(){
     document.querySelector('#rainbow').classList.remove('toggle');
     currentColor = getColor('current-color');
     rainbowModeActive = false;
+    clearInterval(interval);
 }
 
 function toggleRainbow(){
     disableEraseMode();
     document.querySelector('#rainbow').classList.add('toggle');
     rainbowModeActive = true;
+    setRainbowTool()
+}
+function resetBrush(){
+    currentColor = getColor('current-color');
+}
+// Generate random colors for rainbow tool icon
+function setRainbowTool(){
+    
+    rainbow = document.querySelectorAll('.rainbow');
+    rainbow.forEach(cell  => {
+    
+        cell.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
+});
 
-    while (rainbowModeActive){
-        setInterval(setRainbowTool(), 1000);
-    }
+  
 }
 
 
+function colorToolset(){
+    const toolsCanvas = document.querySelectorAll('.canvasColor');
+    toolsCanvas.forEach(cell => {
+        console.log(BG_COLOR);
+        cell.style.backgroundColor = BG_COLOR;
+    });
 
+    const toolsCurrent = document.querySelectorAll
+
+}
+colorToolset();
 // Clear entire canvas 
 function eraseCanvasContent(){
     const canvas = document.querySelectorAll('.pixel');
@@ -177,14 +196,6 @@ function fill(color){
        );
 }
 
-
-
-function resetBrush(){
-    //console.log(currentColor);
-    currentColor = getColor('current-color');
-    //console.log(currentColor);
-}
-
 // #Color palette related functions
 // Get color from cell
 function getColor(cellID){
@@ -201,13 +212,13 @@ function setColor(cellID, color){
 }
 // Set 'Current Selection' to specified color
 function setCurrentSelection(color){
-    const currentSelection = document.querySelector('#current-color');
+    const currentSelection = document.querySelector('.current-color');
     currentColor = color;
     currentSelection.style.backgroundColor = color;
 }
 // Enable us to grab a color from palette and assign it to Current Selection
 function selectColorFromPalette(){
-    const selectedColor = document.querySelector('#current-color');
+    const selectedColor = document.querySelector('.current-color');
     const palette = document.querySelectorAll('.color-picker');
  
     palette.forEach(color => {
@@ -233,20 +244,6 @@ function colorizePalette(){
         const colorID = color.getAttribute('id');
         color.style.backgroundColor = colorID;
     })
-}
-// Generate random colors for rainbow tool icon
-function setRainbowTool(){
-    
-    rainbow = document.querySelectorAll('.rainbow');
-    rainbow.forEach(cell  => {
-    
-        cell.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
-
-});
-
-    while (rainbowModeActive){
-        setInterval(setRainbowTool(), 1000);
-    }
 }
 // ## Palette generation functions
 //  This series of functions will take the master color 
