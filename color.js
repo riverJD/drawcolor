@@ -1,7 +1,11 @@
 // Color that will be placed on a pixel.
 let currentColor = 'black';
-
+// Default draw mode
+let currentMode = 'click';
 //  How many children (color gradients) to create what what gradient
+
+
+
 PALETTE_SIZE = 8;
 PALETTE_GRADIENT_PERCENTAGE = .23;
 BG_COLOR = 'rgb(255, 255, 255)';
@@ -23,13 +27,12 @@ function createGrid(size){
     for (let i = 0; i < gridsize; i++){
         const grid = document.querySelector('.canvas');
         let cell = document.createElement('div');    
-        cell.setAttribute('class','pixel');
-
         // add ID to each cell for future manipulation
-        cell.setAttribute(`id`,`grid${i}`);
+        setAttributes(cell, {"class": "pixel", "id": `grid${i}`, "style": `background-color: ${BG_COLOR}`});
+;
         grid.appendChild(cell); 
     }
-    draw();
+    //draw();
 }
 // Scale size of pixels on grid
 function changeGridSize(size){
@@ -54,19 +57,50 @@ function updateGridOnSlider(){
 
 
 // #Draw related functions
+function draw(type){
 
-function draw(color){
     
     const canvas = document.querySelectorAll('.pixel');
     canvas.forEach(pixel => {
        
+        pixel.addEventListener('click', (e) => colorPixel(e.target));
         pixel.addEventListener('mouseover', (e) => {
-
-            e.target.style.backgroundColor = currentColor;
+            if (pixel.classList.contains('brush')){
+                colorPixel(e.target);
+            }
         });
-    });
+        
+        //e.target.style.backgroundColor = currentColor;
+        });
+        
+    }
+
+function colorPixel(pixel){
+    pixel.style.backgroundColor = currentColor;
 }
-// Clear canvas 
+
+function disableBrushMode(){
+
+    console.log('removing brush mode');
+    const canvas = document.querySelectorAll('.brush');
+    canvas.forEach(pixel => {
+        
+        pixel.classList.remove('brush');
+        console.log(pixel);
+    })
+}
+
+function enableBrushMode(){
+
+    console.log("brushy");
+     const canvas = document.querySelectorAll('.pixel');
+     canvas.forEach(pixel => {
+   
+        pixel.classList.add('brush');
+     })
+}
+
+// Clear entire canvas 
 function eraseCanvasContent(){
     const canvas = document.querySelectorAll('.pixel');
     canvas.forEach(pixel => {
@@ -76,9 +110,9 @@ function eraseCanvasContent(){
 // Fill canvas from 'Current Selection' or override
 function fill(color){
     console.log('filling');
-//if (color == undefined){
-       // fill(currentColor);
-   // }
+    if (color == undefined){
+        fill(currentColor);
+    }
 
    canvas = document.querySelectorAll('.pixel');
    //console.log(canvas);
@@ -92,11 +126,17 @@ function fill(color){
        );
 }
 
-function erase(){}
+function erase(){
+    currentColor = BG_COLOR;
+}
 
+function resetBrush(){
+    //console.log(currentColor);
+    currentColor = getColor('current-color');
+    //console.log(currentColor);
+}
 
 // #Color palette related functions
-
 // Get color from cell
 function getColor(cellID){
 
@@ -224,12 +264,27 @@ function init(){
         
         eraseCanvasContent();
     });
-    const fillBtn = document.querySelector('#fillbtn');
+    const fillBtn = document.querySelector('#fill');
     //console.log(fillBtn);
-    fillBtn.addEventListener('click', () => fill('red'));
+    fillBtn.addEventListener('click', () => fill());
     
+    const eraser = document.querySelector('#eraser');
+
+    eraser.addEventListener('click', () => erase());
+
+    const pen = document.querySelector('#pen');
+    pen.addEventListener('click', () => {
+        resetBrush();
+        disableBrushMode();
+    });
+    
+
+    const brush = document.querySelector('#brush-mode');
+    brush.addEventListener('click', () => {
+        resetBrush();
+        enableBrushMode();           
+    });
+   
     
 }
-
-
 
