@@ -96,12 +96,16 @@ function disableBrushMode(){
     const canvas = document.querySelectorAll('.brush');
     canvas.forEach(pixel => {    
         pixel.classList.remove('brush');
-        console.log(pixel);
+        //console.log(pixel);
     })
 
     const brush = document.querySelector('#brush-mode');
+    const brushimg = document.querySelector('#brushimg');
+
     brush.classList.remove('toggle');
     brushModeActive = false;
+    brushimg.src = './img/brushoff.png';
+    
 }
 
 function toggleBrushMode(){
@@ -112,7 +116,10 @@ function toggleBrushMode(){
     })
     
     const brush = document.querySelector('#brush-mode');
+    const brushimg = document.querySelector('#brushimg');
     brush.classList.add('toggle');
+    console.log(brush.parentElement.src);
+    brushimg.src = './img/brushon.png';
     brushModeActive = true;
 }
 
@@ -153,7 +160,7 @@ function eraseCanvasContent(){
 }
 // Fill canvas from 'Current Selection' or override
 function fill(color){
-    console.log('filling');
+    //console.log('filling');
     if (color == undefined){
         fill(currentColor);
     }
@@ -162,7 +169,7 @@ function fill(color){
    //console.log(canvas);
    pixels.forEach((pixel) => {
        if ((getColor(pixel.id)) == BG_COLOR){
-           console.log(getColor(pixel.id) + " " +BG_COLOR);
+           //console.log(getColor(pixel.id) + " " +BG_COLOR);
            setColor(pixel.id, color);
        }
     }
@@ -205,7 +212,7 @@ function selectColorFromPalette(){
  
     palette.forEach(color => {
         color.addEventListener('click', (e) => {
-            console.log(e.target.style.backgroundColor);
+            //console.log(e.target.style.backgroundColor);
             setCurrentSelection(e.target.style.backgroundColor);
             disableEraseMode();
         });
@@ -213,9 +220,9 @@ function selectColorFromPalette(){
     // Enable custom colors
     const customColor = document.querySelector('#custom-picker');
     customColor.addEventListener('input', () => {
-        console.log('?');
+        //console.log('?');
         setCurrentSelection(customColor.value)
-        console.log(customColor.value);
+        //console.log(customColor.value);
     });
 }
 // Set color of each cell to it's ID color
