@@ -8,7 +8,7 @@
 </head>
 <body>
     <header><div class="gamelinks">
-        <div class="logo">River Rapidware:
+        <div class="logo">River's Rapidware:
             </div>
             <ul>
             <li class="link"><a href='https://riverjd.github.io/rock-paper-scissors/index.html'>Art of War</a></li>
@@ -46,14 +46,14 @@
                 <li class="tool">
                     <button id="splatterbtn">splatter</button>
                     <div id='splatter'>
-                    <div class='color-picker rainbow splatter'></div>
-                    <div class='color-picker rainbow splatter'></div>
-                    <div class='color-picker rainbow splatter'></div>
+                    <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker current-color splatter'></div>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class='title'><h3 class="text">palette</h3></div>
+        <div id='palette-title'><h3 class="text">palette</h3></div>
         <div class="color-menu menustyle" id="normal">
             <div class="palette">
 
@@ -88,21 +88,34 @@
             <p>Current Selection</p><div class='current-color' id='current-color'></div>
         </div>
     </div>
+    <div id="canvas-flex">
     <!--actual canvas starts here-->
+
     <div class="canvas">
     <!--cells will go here -->
     </div>
-    
+    </div>
     <!--resize grid with a slider-->
+    <div class="right-flex">
     <div class="right-menu">
     <div class="menustyle">
-    <div><h2 class="text">canvas</h2></div><div><button id="gridbtn">Grid</button></div>
+    <div><h2 class="text">canvas</h2></div>
+    <div><button id="gridbtn">Grid</button></div>
     <div id='resize'><p>resize:</p><p id="curSize"></p>
     <input class="slider" type="range" min="4" max="100" value="16" step="4">
     </div>
     <button id='clear-canvas'>CLEAR</button>
 </div>
-<div class="lower-right-menu menustyle"><h3 class="text">canvas<br>color</h3><div>c c c c</div></div>
+<div class="lower-right-menu menustyle">
+    <h3 class="text">canvas<br>color</h3>
+    <div id='canvas-palette'>
+        <input type="button" class="canvas-picker" id="white"></input>
+        <input type="button" class="canvas-picker" id="grey"></input>
+        <input type="button" class="canvas-picker" id="cream"></input>
+
+    </div>
+</div>
+</div>
 </div>
 
     </div>

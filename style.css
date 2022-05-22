@@ -4,20 +4,25 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    
-    
+        
     margin: 0px;
     min-height: 100vh;    
     /* default */
     background-color: rgb(236, 235, 225);
 }
 
-/* kill margin on texts */
+/* Generic styles */
 p, h4, h3, h2{
     margin: 5px;
 }
 
+input{
+    margin: 0;
+}
 
+ul{
+    list-style-type: none;
+}
 
 .text{
     font-weight: 900;
@@ -25,8 +30,6 @@ p, h4, h3, h2{
     color: rgb(48, 48, 48);
 }
 
-
-/* generic menu style */
 .menustyle{
     border: 5px #576e79;
     border-style:solid;
@@ -35,13 +38,12 @@ p, h4, h3, h2{
     background-color: beige
 }
 
-
+/* Header/Footer imported from own template */
 header,
 footer{
     display: flex;
     width: 100%;
     align-items: center;
-    height: 50px;
     font-weight: 900;
     background-color:#dcedf5;
 }
@@ -51,14 +53,6 @@ header{
     border-bottom: 12px solid #93acb8;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-}
-
-footer{
-    justify-content: center;
-    margin-top: auto;
-    border-top: 10px solid #93acb8;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
 }
 
 .logo{
@@ -74,7 +68,6 @@ a:visited{
     font-style: italic;
 }
 
-
 .gamelinks{
     display: flex;
     align-items: baseline;
@@ -87,38 +80,61 @@ a:visited{
     font-size: 20px;
 }
 
+footer{
+    justify-content: center;
+    margin-top: auto;
+    border-top: 10px solid #93acb8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.footer-text{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ */
+
 
 .project-content{
     display: flex;
+    width: 90%;
     align-items: center;
-    justify-content: space-around;
-    gap: 50px;
-    padding: 50px;
-    flex: 1 1 auto;
+    justify-content: space-between;
+    border: 1px dotted purple;
 }
 
+#canvas-flex{
+    display: flex;
+    justify-content: center;
+    border: 2px solid green;
+    flex: 0 1 600px;
+    
+
+}
 .canvas{
     display: grid;
     border: 3px grey double;
-
-    /* grid-template: repeat(4, 1fr) / repeat(4, 1fr);*/
-   
-    height: 400px;
-    width: 400px;
+    flex: 0 auto;
+    min-height: 400px;
+    min-width: 400px;
     margin: 20px;
 
 }
 
-/* Grid Element */
-.pixel{
-    background-color: white;
-    
+/* ### Left side of page */
+.left-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background-color: #dcedf5;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 10px;
+    min-width: 240px;
 }
-
-.pixelgrid{
-    border: 1px dotted black;
-}
-
 .color-menu{
     display: flex;
     flex-direction: column;
@@ -127,35 +143,73 @@ a:visited{
     flex: 0 0 auto;
     height: 320px;
     
-
-
     font-style: oblique;
     font-weight: 600;
 }
-
 .palette{
     display:flex;
     align-items: flex-start;
 
 }
-
 .sub-palette{
     display: flex;
     flex-direction: column;
     flex: 0;
     padding:4px;
     width: 80%;
-  
 }
 
-input{
-    margin: 0;
+#palette-title{
+    flex: 0 1 0;
+    font-weight: 200;
+    align-self: flex-end;
+    letter-spacing: 1em;
 }
 
-ul{
-    list-style-type: none;
+
+/* ^^^^^^^^^^^^^^^^^^^^^^ */
+
+
+/* ### Right side of page */
+.right-flex{
+    display: flex;
+    flex: 1 1 10
+    justify-content: flex-end;
+    width: 20%;
+    border: 1px red solid;
+}
+.right-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 0 1;
+
+    background-color: #dcedf5;
+    width: 60%;
+    padding-left: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+}
+.lower-right-menu{
+    display: flex;
+    flex: 1;
+    border: 1px dotted blue;
+    flex-direction: column;
+    align-items: center;
+}
+/* ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+/* Grid Elements */
+.pixel{
+    background-color: white;
+    
 }
 
+.pixelgrid{
+    border: 1px dotted black;
+}
 
 #clear-canvas{
     background-color: antiquewhite;
@@ -174,8 +228,6 @@ ul{
     display: flex;
 
 }
-
-
 
 .greyscale{
     display: flex;
@@ -209,39 +261,13 @@ ul{
     
 }
 
-.left-menu{
+#canvas-palette{
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    background-color: #dcedf5;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 10px;
+    width: 100%;
+    border: 1px red solid;
+    
 }
 
-.right-menu{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-
-    background-color: #dcedf5;
-
-    padding-left: 5px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-
-
-
-}
-
-.lower-right-menu{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
 button{
     border-style: outset;
@@ -278,20 +304,6 @@ button{
     height: 100%;
     margin: 0;
     padding: 5%;
-
-
-}
-
-.title{
-    flex: 0 1 0;
-    font-weight: 200;
-    align-self: flex-start;
-    letter-spacing: 1em;
-}
-
-
-.tools img{
-    height: 25px;
 }
 
 .tool{
@@ -307,32 +319,24 @@ button{
     margin-right: auto;
 
     width: 5em;
-
 }
-
 .rainbow{
     width: 100%;
     border-radius: 2px;
     
 }
-
-
 #splatter{
     display: flex;
     flex: 1;
     justify-content: space-around;;
 }
 
-
-
 .splatter{
     width: 1em;
 }
 
-
 #brushColor{
     width: calc(100% - 4em);
-
 }
 
 .inactive{
@@ -350,12 +354,5 @@ button:active{
     font-style: italic;
     border-style:inset;
     background-color: #a5cbdd;
-}
-
-
-.footer-text{
-    display: flex;
-    gap: 10px;
-    align-items: center;
 }
 

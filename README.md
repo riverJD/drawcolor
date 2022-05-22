@@ -16,13 +16,13 @@ to do:
 ~~listener - click or hover?~~ *toggle mode option?*
 
 create menu
-    select from fill, pen, splatter(random), or erase
+    ~select from fill, pen, splatter(random), or erase~
 
-        fill - set all cells to set color
-        pen - one grid at a time/default setting
-            switch mode - hover/click
+        ~~fill - set all cells to set color~~
+        ~~pen - one grid at a time/default setting~~
+          ~~switch mode - hover/click~~
         splatter - randomize spots with set color on page
-        erase - set grid color back to canvas color
+        ~~erase - set grid color back to canvas color~~
 
     create pallet
         ~~basic colors first~~
@@ -30,7 +30,7 @@ create menu
         modal for custom color
 
 rainbow 
-    randomly generate rbg values for each color action
+    ~~randomly generate rbg values for each color action~~
     
 
 styling
