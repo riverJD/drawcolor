@@ -143,6 +143,10 @@ function toggleRainbow(){
     disableEraseMode();
     document.querySelector('#rainbow').classList.add('toggle');
     rainbowModeActive = true;
+
+    while (rainbowModeActive){
+        setInterval(setRainbowTool(), 1000);
+    }
 }
 
 
@@ -230,7 +234,20 @@ function colorizePalette(){
         color.style.backgroundColor = colorID;
     })
 }
+// Generate random colors for rainbow tool icon
+function setRainbowTool(){
+    
+    rainbow = document.querySelectorAll('.rainbow');
+    rainbow.forEach(cell  => {
+    
+        cell.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
 
+});
+
+    while (rainbowModeActive){
+        setInterval(setRainbowTool(), 1000);
+    }
+}
 // ## Palette generation functions
 //  This series of functions will take the master color 
 //  and attach a color to it's sub-palette. 
@@ -304,6 +321,7 @@ function init(){
     setPaletteCellColor('rgb(255, 255, 255)','black');
     colorizePalette();
     selectColorFromPalette();
+    setRainbowTool()
     setCurrentSelection(currentColor);
     updateGridOnSlider();
     draw();

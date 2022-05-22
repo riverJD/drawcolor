@@ -21,11 +21,25 @@
         <div class="buttons">
             <h2>tools</h2>
             <ul class="tools">
-                <li class="tool"><div><button id="pen">pen</button></div><div><img src="./img/brush.png"></div></li>
-                <li class="tool"><button id="brush-mode">brush mode</button></li>
-                <li class="tool"><button id="fill">fill</buttin></li>
-                <li class="tool"><button id="eraser">erase</button></li>
-                <li class="tool"><button id="rainbow">rainbow</button></li>
+                <li class="tool"><button id="pen">pen</button>
+                <div class='color-picker' id="black"></div></li>
+                
+                <li class="tool"><button id="fill">fill</button>
+                    <sp></sp><div class="color-picker" id="white"></div>
+                    <div id='arrow'>&#187;&#187;</div> 
+                    <div class='color-picker canvasColor' id='black'></div></li>
+                
+                <li class="tool"><button id="eraser">erase</button>
+                    <div class='color-picker canvasColor' id="white"></div></li>
+                
+                <li class="tool"><button id="brush-mode">brush</button>
+                    <div class='color-picker canvasColor' id='blue'></div></li>
+
+                <li class="tool"><button id="rainbow">rainbow</button>
+                    <div class='color-picker rainbow'></div>
+                    <div class='color-picker rainbow'></div>
+                    <div class='color-picker rainbow'></div>
+                    <div class='color-picker rainbow'></div></li>
             </ul>
         </div>
         <div class='title'><h3>palette</h3></div>
