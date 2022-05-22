@@ -100,7 +100,7 @@ function disableBrushMode(){
     })
 
     const brush = document.querySelector('#brush-mode');
-    const brushimg = document.querySelector('#brushimg');
+        const brushimg = document.querySelector('#brushimg');
 
     brush.classList.remove('toggle');
     brushModeActive = false;
@@ -335,7 +335,7 @@ function init(){
         disableEraseMode();
     });
     
-    const brush = document.querySelector('#brush-mode');
+    const brush = document.querySelector('#brushimg');
     brush.addEventListener('click', () => {
         (brushModeActive ? disableBrushMode(): toggleBrushMode())       
     });
