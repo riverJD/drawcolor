@@ -119,14 +119,13 @@ function colorPixel(pixel){
 
     // Handle a case where user switches canvas colors
     if (pixel.style.backgroundColor == BG_COLOR){
-        console.log('store as string')
         pixelState.color = 'BG_COLOR'
     }
     else {
-        console.log('ye');
+
     pixelState.color = pixel.style.backgroundColor;
     }
-    //console.log(pixelState.color);
+
     history.push(pixelState);
         
     if (rainbowModeActive){
@@ -233,7 +232,6 @@ function fill(color){
 }
 function undoAction(){
     
-    console.log('undo');
     historyLen = history.length;
 
     if (historyLen === 0){
@@ -243,7 +241,6 @@ function undoAction(){
     let prevAction = history.pop();
 
     if (prevAction.color == 'BG_COLOR'){
-        console.log('Set to BG');
         prevAction.pixel.style.backgroundColor = BG_COLOR;
 
     }
