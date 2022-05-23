@@ -15,6 +15,13 @@ const PALETTE_GRADIENT_PERCENTAGE = .23;
 let BG_COLOR = 'rgb(255, 255, 255)';
 
 
+// Change BG Color
+
+function setBGColor(){
+
+}
+
+
 // #Canvas generation functions
 function clearGrid(){
     
@@ -64,6 +71,7 @@ function updateCanvasColor(color){
     fill(color);
     
     BG_COLOR = color;
+    colorToolset();
 
 }
 function toggleGrid(mode){
@@ -85,7 +93,6 @@ function toggleGrid(mode){
         });        
     }
 }
-
 
 // #Draw related functions
 function draw(type){
@@ -113,7 +120,6 @@ function colorPixel(pixel){
     else {
     pixel.style.backgroundColor = currentColor;
     }
-
 }
 
 // # Toolbox functions
@@ -249,8 +255,7 @@ function selectColorFromPalette(){
     const customColor = document.querySelector('#custom-picker');
     customColor.addEventListener('input', () => {
         setCurrentSelection(customColor.value)
-        console.log(customColor.value);
-    });
+     });
 }
 
 // Set color of each cell to it's ID color
@@ -339,6 +344,22 @@ function getPixels(){
     return (document.querySelectorAll('.pixel'));
 
 }
+
+// Edit BG Color, will switch CSS sheets (disabled)
+function setBGColor(){
+const body = document.querySelector('body');
+const menu = document.querySelectorA
+const buttons = document.querySelectorAll('.bg-color-button');
+buttons.forEach(button => {
+    let color = button.getAttribute('data-color');
+    button.style.backgroundColor = color;
+    })
+}
+
+
+
+
+
 // Create listeners for various inputs
 function loadUI(){
     const button = document.querySelector('#clear-canvas');
@@ -355,10 +376,6 @@ function loadUI(){
         });
         });
     
-    
-
-
-
 
 
     const fillBtn = document.querySelector('#fill');
@@ -429,6 +446,7 @@ function init(){
     colorToolset();
     toggleGrid();
     draw();
+    setBGColor();
     loadUI();
 }
 

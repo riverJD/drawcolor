@@ -15,9 +15,25 @@
             <li class="link"><a href="./index.html">	<span class="block-line"><span><span style="color:#b50b0b;">C</span><span style="color:#bd0fd4;">o</span><span style="color:#001bb3;">l</span><span style="color:#adc706;">o</span><span style="color:#03ad1a;">r</span></span></span></a></li>
             <li class="link inactive">Link 3</li>
         </ul>
-        </div><h3 class='title'>Color</h3></header>
+        </div><h3 class='title'>Color</h3>
+    </header>
+    
+    <!-- Toggle BG Colors -->
+    <div id="bg-color">
+        <input class="bg-color-button" type="button" data-color="sienna">
+
+        <input class="bg-color-button" type="button" data-color="rgb(236, 235, 225)">
+        <input class="bg-color-button" type="button" data-color="lavender">
+        <input class="bg-color-button" type="button" data-color="mintcream">
+        <input class="bg-color-button" type="button" data-color="aliceblue">
+      </div>
+    
+
     <div class="project-content">
-    <div class="left-menu">
+    
+    <div class="left-flex">
+        
+        <!-- Upper left tool menu-->
         <div class="tool-buttons">
             <h2 class="text" id="tools-title">tools</h2>
             <ul class="tools menustyle">
@@ -43,32 +59,27 @@
                     <div class='color-picker rainbow'></div>        
                     <div class='color-picker rainbow'></div>
                 </li>
-                <li class="tool">
+                <li class="tool inactive">
                     <button id="splatterbtn">splatter</button>
                     <div id='splatter'>
                     <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker canvasColor splatter'></div>
                     <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker canvasColor splatter'></div>
                     <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker canvasColor splatter'></div>
-                    <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker canvasColor splatter'></div>
-                    <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker canvasColor splatter'></div>
                     
                     </div>
                 </li>
             </ul>
         </div>
+        
+        <!-- palette -->
         <div id='palette-title'><h3 class="text">palette</h3></div>
         <div class="color-menu menustyle" id="normal">
             <div class="palette">
-
             <div class="sub-palette"> 
-               
-                
-            <!-- DEFAULT VALUES-->
+                     
+            <!-- DEFAULT VALUES                         -->
+            <!--Palette will be generated based on these-->
+            <!--color values-->
             <div class="color-type" id="rgb(255, 0, 0)">       
             </div>
             <div class="color-type" id="rgb(255, 127, 0)">
@@ -85,7 +96,8 @@
             </div>
             <div class="color-type" id="rgb(127, 0, 255)">
             </div>
-            <div id='custom'>Custom: <input type="color" id="custom-picker"></div>
+            <div class="color-type custom-color" id="rgb(0, 0, 0)"></div>
+            <div id='custom'><input type="color" id="custom-picker"></div>
             </div>
             <div class="greyscale color-type" id="rgb(255, 255, 255)"><button id="abort">?</button>
             </div>
@@ -96,6 +108,7 @@
             <p>Current Selection</p><div class='current-color' id='current-color'></div>
         </div>
     </div>
+    
     <div id="canvas-flex">
     <!--actual canvas starts here-->
 
@@ -106,11 +119,11 @@
     <!--resize grid with a slider-->
     <div class="right-flex">
     <div class="right-menu">
-    <div class="menustyle">
-    <div><h2 class="text">canvas</h2></div>
+    <div class="menustyle" id="upper-right-menu">
+    <div><h2 class="text"></h2></div>
     <div><button id="gridbtn">Grid</button></div>
-    <div id='resize'><p>resize:</p><p id="curSize"></p>
-    <input class="slider" type="range" min="4" max="100" value="16" step="4">
+    <div id='resize'><p id="curSize"></p>
+    <input class="slider" id='slider' type="range" min="4" max="100" value="16" step="4">
     </div>
     <button id='clear-canvas'>CLEAR</button>
 </div>
@@ -126,8 +139,7 @@
     </div>
 </div>
 </div>
-</div>
-
+    </div>
     </div>
     <footer><div></div><div class="footer-text"><p>copyright © 2022</p><div class="footer-text" id="namelink"><a href=https://github.com/riverJD/>river</div> <img src="img/GitHub-Mark-64px.png" width="24" height="24"></div><div></div></a></div></footer>
 
