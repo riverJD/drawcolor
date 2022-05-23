@@ -23,6 +23,11 @@ Rainbow: Paints randomly colored pixels
     button or 'r' key to toggle
     will work in either pen or brush mode
 
+Undo: Undoes the previous previous paint.  
+    button or 'z' key to 'undo'.
+    Can rewind very far, doesn't work well with canvas or clear (will implement fix shortly)
+    
+
 Splatter: Randomly spray selected color on canvas  
     not currently enabled
 
