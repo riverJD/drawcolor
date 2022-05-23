@@ -17,69 +17,59 @@
         </ul>
         </div>
     </header>
-   
+
     <!-- Toggle BG Colors -->
     <div id="bg-color">
         <input class="bg-color-button" type="button" data-color="sienna">
-
         <input class="bg-color-button" type="button" data-color="rgb(236, 235, 225)">
         <input class="bg-color-button" type="button" data-color="lavender">
         <input class="bg-color-button" type="button" data-color="mintcream">
         <input class="bg-color-button" type="button" data-color="aliceblue">
       </div>
-      <div id="title">color</div>
+      <div id="title-container"><div id="title">color</div></div>
 
-    <div class="project-content">
-    
-    <div class="left-flex">
-        
-        <!-- Upper left tool menu-->
-        <div class="tool-buttons">
-            <h2 class="text" id="tools-title">tools</h2>
-            <ul class="tools menustyle">
-                <li class="tool"><button id="pen">pen</button>
-                <div class='color-picker current-color' id="black"></div></li>
-                <li class="tool"><button id="brush-mode">(b)rush</button>
-                    <div class='color-picker current-color' id="brushColor"></div></li>
-
-                <li class="tool"><button id="fill">fill</button>
-                    <sp></sp><div class="color-picker current-color" id="red"></div>
-                    <div id='fill-arrow'>&#187;&#187;</div> 
-                    <div class='color-picker canvasColor' id='fillColor'></div></li>
-                
-                <li class="tool"><button id="eraserbtn">(e)rase</button>
-                    <div class='color-picker canvasColor' id="eraseColor"></div></li>
-                
-
-                <li class="tool"><button id="rainbow">(r)ainbow</button>
-                    <div class='color-picker rainbow'></div>
-                    <div class='color-picker rainbow'></div>
-                    <div class='color-picker rainbow'></div>
-                    <div class='color-picker rainbow'></div>
-                    <div class='color-picker rainbow'></div>        
-                    <div class='color-picker rainbow'></div>
-                </li>
-                <li class="tool inactive">
-                    <button id="splatterbtn">splatter</button>
-                    <div id='splatter'>
-                    <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker current-color splatter'></div>
-                    <div class='color-picker current-color splatter'></div>
-                    
-                    </div>
-                </li>
-            </ul>
-        </div>
-        
+    <div class="project-content"> 
+        <div class="left-flex">           
+            <!-- Upper left tool menu-->
+            <div class="tool-buttons">
+                <h2 class="text" id="tools-title">tools</h2>
+                <ul class="tools menustyle">
+                    <li class="tool"><button id="pen">pen</button>
+                    <div class='color-picker current-color' id="black"></div></li>
+                    <li class="tool"><button id="brush-mode">(b)rush</button>
+                        <div class='color-picker current-color' id="brushColor"></div></li>
+                    <li class="tool"><button id="fill">fill</button>
+                        <sp></sp><div class="color-picker current-color" id="red"></div>
+                        <div id='fill-arrow'>&#187;&#187;</div> 
+                        <div class='color-picker canvasColor' id='fillColor'></div></li>              
+                    <li class="tool"><button id="eraserbtn">(e)rase</button>
+                        <div class='color-picker canvasColor' id="eraseColor"></div></li>
+                    <li class="tool"><button id="rainbow">(r)ainbow</button>
+                        <div class='color-picker rainbow'></div>
+                        <div class='color-picker rainbow'></div>
+                        <div class='color-picker rainbow'></div>
+                        <div class='color-picker rainbow'></div>
+                        <div class='color-picker rainbow'></div>        
+                        <div class='color-picker rainbow'></div>
+                    </li>
+                    <li class="tool inactive">
+                        <button id="splatterbtn">splatter</button>
+                        <div id='splatter'>
+                        <div class='color-picker current-color splatter'></div>
+                        <div class='color-picker current-color splatter'></div>
+                        <div class='color-picker current-color splatter'></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>        
         <!-- palette -->
         <div id='palette-title'><h3 class="text">palette</h3></div>
         <div class="color-menu menustyle" id="normal">
             <div class="palette">
-            <div class="sub-palette"> 
-                     
-            <!-- DEFAULT VALUES                         -->
-            <!--Palette will be generated based on these-->
-            <!--color values-->
+            <div class="sub-palette">                  
+            <!-- DEFAULT VALUES  ----------------->
+            <!--Palette will be generated -->
+            <!--based on these data-color values-->
             <div class="color-type" id="palette1" data-color="rgb(255, 0, 0)">       
             </div>
             <div class="color-type" id="palette2" data-color="rgb(255, 127, 0)"> 
@@ -96,35 +86,33 @@
             </div>
             <div class="color-type" id="palette8" data-color="rgb(127, 0, 255)">
             </div>
+            <!-- Future custom palette placeholder-->
             <div class="color-type custom-color inactive" data-color="rgb(0, 0, 0)" id="customPalette"></div>
+            <!-- Pick a customer color-->
             <div id='custom'><input type="color" id="custom-picker"></div>
             </div>
             <div class="greyscale color-type" id="greyscale" data-color="rgb(255, 255, 255)"><button id="help-button">?</button>
             </div>
-            </div>
-            <!-- CUSTOMER COLOR INPUT-->
-            
-            <!-- CURRENTLY SELECTED COLOR-->
+            </div>            
+            <!-- CURRENTLY SELECTED AND PREVIOPUS COLOR-->
             <div id="current-previous">
                 <div class='current-color' id='current-color'></div>
-                <div id='previous-color'></div></div>
+                <div class='color-picker' id='previous-color'></div></div>
             </div>
     </div>
     
-    <div id="canvas-flex">
-    
-    
-    <!--actual canvas starts here-->
 
+    <div id="canvas-flex">
+    <!--actual canvas starts here-->
     <div id="canvas">
-    <!--cells will go here -->
     </div>
     </div>
-    <!--resize grid with a slider-->
+
+    
     <div class="right-flex">
+        <!--Right Menus -->
     <div class="right-menu">
     <div class="menustyle" id="upper-right-menu">
-    <div><h2 class="text"></h2></div>
     <div><button id="gridbtn">Grid</button></div>
     <div id='resize'><p id="curSize"></p>
     <input class="slider" id='slider' type="range" min="4" max="100" value="16" step="4">
@@ -139,7 +127,6 @@
         <input type="button" class="canvas-picker" id="white"></input>
         <input type="button" class="canvas-picker" id="floralwhite"></input>
         <input type="button" class="canvas-picker" id="black"></input>
-
     </div>
 </div>
 </div>
@@ -149,10 +136,7 @@
         <div class="modal-content">Custom Palette Generation Will Soon Come Here<span class="closeModal">&times;</span></div>
 
     </div>
-
-
     <footer><div></div><div class="footer-text"><p>copyright © 2022</p><div class="footer-text" id="namelink"><a href=https://github.com/riverJD/>river</div> <img src="img/GitHub-Mark-64px.png" width="24" height="24"></div><div></div></a></div></footer>
-
     
 </body>
 </html>
