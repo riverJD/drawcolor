@@ -7,6 +7,8 @@ let brushModeActive = false;
 let eraseModeActive = false;
 let rainbowModeActive;
 let gridActive = false;
+
+let history = new Array();
 const canvas = document.querySelector('#canvas');
 
 const CANVAS_SIZE_DEFAULT = 16;
@@ -111,11 +113,24 @@ function draw(type){
 
 function colorPixel(pixel){
 
+    const pixelState = new Object();
+    pixelState.color = pixel.style.backgroundColor;
+    pixelState.pixel = pixel;
+
+    //console.log(pixelState.color);
+    history.push(pixelState);
+    
+    
     if (rainbowModeActive){
         
         pixel.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
+
+
     }
     else {
+    
+
+
     pixel.style.backgroundColor = currentColor;
     }
 }
@@ -210,6 +225,19 @@ function fill(color){
     }
        );
 }
+function undoAction(){
+    console.log('undo');
+    historyLen = history.length;
+
+    if (historyLen === 0){
+        return;
+    }
+
+    let prevAction = history.pop();
+    prevAction.pixel.style.backgroundColor = prevAction.color;
+}
+
+
 
 // #Color palette related functions
 // Get color from cell
@@ -431,10 +459,20 @@ function startListeners(){
                 break;
             case 'e':
               (eraseModeActive ? disableEraseMode() : toggleEraseMode());
-       }
+                break;
+            case 'z':
+                undoAction();
+
+            }
 
     });
 
+    const undo = document.querySelector('#undo');
+    undo.addEventListener('click', () => {
+        undoAction();
+    });
+
+    
 
 
 }

@@ -481,3 +481,7 @@ button:active{
     text-decoration: none;
     cursor:pointer;
 }
+
+#undo{
+    align-self: flex-end;
+}
