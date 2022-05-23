@@ -114,9 +114,18 @@ function draw(type){
 function colorPixel(pixel){
 
     const pixelState = new Object();
-    pixelState.color = pixel.style.backgroundColor;
     pixelState.pixel = pixel;
 
+
+    if (pixel.style.backgroundColor == BG_COLOR){
+        console.log('store as string')
+        pixelState.color = 'BG_COLOR'
+    }
+
+    else {
+        console.log('ye');
+    pixelState.color = pixel.style.backgroundColor;
+    }
     //console.log(pixelState.color);
     history.push(pixelState);
     
@@ -125,11 +134,8 @@ function colorPixel(pixel){
         
         pixel.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
 
-
     }
     else {
-    
-
 
     pixel.style.backgroundColor = currentColor;
     }
@@ -226,6 +232,7 @@ function fill(color){
        );
 }
 function undoAction(){
+    
     console.log('undo');
     historyLen = history.length;
 
@@ -234,7 +241,15 @@ function undoAction(){
     }
 
     let prevAction = history.pop();
+
+    if (prevAction.color == 'BG_COLOR'){
+        console.log('Set to BG');
+        prevAction.pixel.style.backgroundColor = BG_COLOR;
+
+    }
+    else {
     prevAction.pixel.style.backgroundColor = prevAction.color;
+    }
 }
 
 
