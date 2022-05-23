@@ -117,25 +117,25 @@ function colorPixel(pixel){
     pixelState.pixel = pixel;
 
 
+    // Handle a case where user switches canvas colors
     if (pixel.style.backgroundColor == BG_COLOR){
         console.log('store as string')
         pixelState.color = 'BG_COLOR'
     }
-
     else {
         console.log('ye');
     pixelState.color = pixel.style.backgroundColor;
     }
     //console.log(pixelState.color);
     history.push(pixelState);
-    
-    
+        
     if (rainbowModeActive){
         
         pixel.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
-
     }
     else {
+    
+
 
     pixel.style.backgroundColor = currentColor;
     }
@@ -423,7 +423,7 @@ function startListeners(){
         });
 
     const fillBtn = document.querySelector('#fill');
-    fillBtn.addEventListener('click', () => fill());
+    fillBtn.addEventListener('click', () => console.warn('fill temporary disabled'));
     
     const eraser = document.querySelector('#eraserbtn');
 

@@ -14,6 +14,7 @@ Brush(mode): Paint canvas without clicking
     
 Fill: Paint all empty spots with selected color
     will only fill 'empty' canvas spaces
+    (temporarily disabled-- fixing issue with canvas recoloring)
 
 Erase: Erase paint from canvas
     button or 'e' key to toggle
@@ -25,7 +26,7 @@ Rainbow: Paints randomly colored pixels
 
 Undo: Undoes the previous previous paint.  
     button or 'z' key to 'undo'.
-    Can rewind very far, doesn't work well with canvas or clear (will implement fix shortly)
+    Can rewind very far, doesn't well with clear or fill (will implement fix shortly)
     
 
 Splatter: Randomly spray selected color on canvas  
