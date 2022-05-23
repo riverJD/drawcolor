@@ -18,8 +18,8 @@
         </div><h3 class='title'>Color</h3></header>
     <div class="project-content">
     <div class="left-menu">
-        <div class="buttons">
-            <h2 class="text">tools</h2>
+        <div class="tool-buttons">
+            <h2 class="text" id="tools-title">tools</h2>
             <ul class="tools menustyle">
                 <li class="tool"><button id="pen">pen</button>
                 <div class='color-picker current-color' id="black"></div></li>
@@ -28,7 +28,7 @@
 
                 <li class="tool"><button id="fill">fill</button>
                     <sp></sp><div class="color-picker current-color" id="red"></div>
-                    <div id='arrow'>&#187;&#187;</div> 
+                    <div id='fill-arrow'>&#187;&#187;</div> 
                     <div class='color-picker canvasColor' id='fillColor'></div></li>
                 
                 <li class="tool"><button id="eraserbtn">erase</button>
@@ -47,8 +47,16 @@
                     <button id="splatterbtn">splatter</button>
                     <div id='splatter'>
                     <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker canvasColor splatter'></div>
                     <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker canvasColor splatter'></div>
                     <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker canvasColor splatter'></div>
+                    <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker canvasColor splatter'></div>
+                    <div class='color-picker current-color splatter'></div>
+                    <div class='color-picker canvasColor splatter'></div>
+                    
                     </div>
                 </li>
             </ul>
@@ -91,7 +99,7 @@
     <div id="canvas-flex">
     <!--actual canvas starts here-->
 
-    <div class="canvas">
+    <div id="canvas">
     <!--cells will go here -->
     </div>
     </div>
@@ -107,11 +115,13 @@
     <button id='clear-canvas'>CLEAR</button>
 </div>
 <div class="lower-right-menu menustyle">
-    <h3 class="text">canvas<br>color</h3>
+    <h3 class="text">canvas</h3>
     <div id='canvas-palette'>
+        <input type="button" class="canvas-picker" id="antiquewhite"></input>
+        <input type="button" class="canvas-picker" id="lightgoldenrodyellow"></input>
         <input type="button" class="canvas-picker" id="white"></input>
-        <input type="button" class="canvas-picker" id="grey"></input>
-        <input type="button" class="canvas-picker" id="cream"></input>
+        <input type="button" class="canvas-picker" id="floralwhite"></input>
+        <input type="button" class="canvas-picker" id="black"></input>
 
     </div>
 </div>

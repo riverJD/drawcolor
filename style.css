@@ -112,7 +112,7 @@ footer{
     
 
 }
-.canvas{
+#canvas{
     display: grid;
     border: 3px grey double;
     flex: 0 auto;
@@ -135,6 +135,16 @@ footer{
     padding-right: 10px;
     min-width: 240px;
 }
+
+
+
+
+
+
+
+
+
+
 .color-menu{
     display: flex;
     flex-direction: column;
@@ -173,15 +183,15 @@ footer{
 /* ### Right side of page */
 .right-flex{
     display: flex;
-    flex: 1 1 10
-    justify-content: flex-end;
+    flex: 0 1 auto;
+    justify-content: flex-start;
     width: 20%;
     border: 1px red solid;
 }
 .right-menu{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 100px;
     flex: 0 1;
 
     background-color: #dcedf5;
@@ -194,10 +204,12 @@ footer{
 .lower-right-menu{
     display: flex;
     flex: 1;
-    border: 1px dotted blue;
     flex-direction: column;
     align-items: center;
 }
+
+
+
 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
@@ -263,10 +275,13 @@ footer{
 
 #canvas-palette{
     display: flex;
-    width: 100%;
-    border: 1px red solid;
     
+    border: 1px red solid;
 }
+
+
+
+
 
 
 button{
@@ -277,39 +292,36 @@ button{
     height: 24px;
 }
 
-.buttons{
-    display: flex;
-    flex-shrink: 1;
-    width: 90%;
-    align-items: center;
-
-    
-}
-
-.buttons h2{
-    font-weight: 200;
-    writing-mode: vertical-lr;
-    text-orientation: upright;
-}
-
-#arrow{
-    font-size: 24px;
-}
-
 .tools{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    gap: 5px;
     height: 100%;
     margin: 0;
     padding: 5%;
 }
 
+.tool-buttons{
+    display: flex;
+    flex-shrink: 1;
+    width: 90%;
+    align-items: center;    
+}
+
+#tools-title{
+    font-weight: 200;
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+}
+
+#fill-arrow{
+    font-size: 24px;
+}
+
 .tool{
-    background-color: #e6f1f7;
-    
-  
+    background-color: #ececec; 
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -317,9 +329,9 @@ button{
 
 .tool button{
     margin-right: auto;
-
     width: 5em;
 }
+
 .rainbow{
     width: 100%;
     border-radius: 2px;
@@ -327,12 +339,18 @@ button{
 }
 #splatter{
     display: flex;
+    flex-wrap: wrap;
+    gap: 0;
     flex: 1;
-    justify-content: space-around;;
+    height: 24px;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .splatter{
+    flex: 0 1 15px;
     width: 1em;
+    height: 50%;
 }
 
 #brushColor{
@@ -354,5 +372,25 @@ button:active{
     font-style: italic;
     border-style:inset;
     background-color: #a5cbdd;
+}
+
+/* BG Colors */
+
+
+
+.canvas-picker#antiquewhite{
+    background-color: antiquewhite;
+}
+.canvas-picker#lightgoldenrodyellow{
+    background-color:lightgoldenrodyellow;
+}
+.canvas-picker#white{
+    background-color:white;
+}
+.canvas-picker#floralwhite{
+    background-color:floralwhite
+}
+.canvas-picker#black{
+    background-color:black;
 }
 

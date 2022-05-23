@@ -3,17 +3,16 @@
 let currentColor = 'black';
 
 //  How many children (color gradients) to create what what gradient
-let interval;
 let brushModeActive = false;
 let eraseModeActive = false;
 let rainbowModeActive;
 let gridActive = false;
-const canvas = document.querySelector('.canvas');
+const canvas = document.querySelector('#canvas');
 
+const CANVAS_SIZE_DEFAULT = 16;
 const PALETTE_SIZE = 8;
 const PALETTE_GRADIENT_PERCENTAGE = .23;
 let BG_COLOR = 'rgb(255, 255, 255)';
-
 
 
 // #Canvas generation functions
@@ -28,12 +27,11 @@ function createGrid(size){
     let gridsize = size * size;
 
     for (let i = 0; i < gridsize; i++){
-        const grid = document.querySelector('.canvas');
         let cell = document.createElement('div');    
         // add ID to each cell for future manipulation
         setAttributes(cell, {"class": "pixel", "id": `grid${i}`, "style": `background-color: ${BG_COLOR}`});
 ;
-        grid.appendChild(cell); 
+        canvas.appendChild(cell); 
     }
     if(brushModeActive) {
         toggleBrushMode();
@@ -62,7 +60,11 @@ function updateGridOnSlider(){
     }); 
 }
 function updateCanvasColor(color){
+    
+    fill(color);
+    
     BG_COLOR = color;
+
 }
 function toggleGrid(mode){
     
@@ -83,6 +85,7 @@ function toggleGrid(mode){
         });        
     }
 }
+
 
 // #Draw related functions
 function draw(type){
@@ -155,7 +158,7 @@ function disableRainbow(){
     document.querySelector('#rainbow').classList.remove('toggle');
     currentColor = getColor('current-color');
     rainbowModeActive = false;
-    clearInterval(interval);
+
 }
 
 function toggleRainbow(){
@@ -176,7 +179,6 @@ function setRainbowTool(){
         cell.style.backgroundColor = (`rgb(${getRandomColorValue()},${getRandomColorValue()},${getRandomColorValue()})`);
 });
 }
-
 // Sets color of tool icons to match BG color (ex: erase tool reflects proper bg color)
 function colorToolset(){
     const toolsCanvas = document.querySelectorAll('.canvasColor');
@@ -186,8 +188,6 @@ function colorToolset(){
     });
     const toolsCurrent = document.querySelectorAll
 }
-
-
 // Clear entire canvas 
 function eraseCanvasContent(){
     getPixels().forEach(pixel => {
@@ -233,7 +233,6 @@ function setCurrentSelection(color){
     currentSelection.forEach(cell => {
         cell.style.backgroundColor = color;
     })
-   // currentSelection.style.backgroundColor = color;
 }
 // Enable us to grab a color from palette and assign it to Current Selection
 function selectColorFromPalette(){
@@ -242,7 +241,6 @@ function selectColorFromPalette(){
  
     palette.forEach(color => {
         color.addEventListener('click', (e) => {
-            //console.log(e.target.style.backgroundColor);
             setCurrentSelection(e.target.style.backgroundColor);
             disableEraseMode();
         });
@@ -250,11 +248,11 @@ function selectColorFromPalette(){
     // Enable custom colors
     const customColor = document.querySelector('#custom-picker');
     customColor.addEventListener('input', () => {
-        //console.log('?');
         setCurrentSelection(customColor.value)
         console.log(customColor.value);
     });
 }
+
 // Set color of each cell to it's ID color
 function colorizePalette(){
     
@@ -268,7 +266,7 @@ function colorizePalette(){
 //  This series of functions will take the master color 
 //  and attach a color to it's sub-palette. 
 
-// Attach child cell to parent color head
+// Attach child cell to parent color head in palette
 function setPaletteCellColor(colorHeadID, color){
     
     const colorType = document.getElementById(colorHeadID);
@@ -287,7 +285,11 @@ function createColorGradient(){
     let red = getRGBValues(e.id)[0];
     let green = getRGBValues(e.id)[1];
     let blue = getRGBValues(e.id)[2];
-      setPaletteCellColor(e.id, e.id)
+    
+    // Set color of cell reflecting parent
+    setPaletteCellColor(e.id, e.id)
+    
+    // Set color of children
     for (let i = 1; i < PALETTE_SIZE; i++)
     {
         red = Math.round(red - (red * PALETTE_GRADIENT_PERCENTAGE ));
@@ -297,18 +299,21 @@ function createColorGradient(){
         setPaletteCellColor(e.id, newColor);
     }
     })
-    // need to add black to greyscale palette
+    // Add black to greyscale palette
     setPaletteCellColor('rgb(255, 255, 255)','black');
     }
+
 // Will generate a series of 'parent' cells for palette. 
+// Incomplete ~~ Disabledbbb
 function createColorTypes(){
 
     const colorsToCreate = arguments.length;
     const palette = document.querySelector('sub-palette');
 }
-
+    
 // #Helper functions
-// parses rgb(x,x,x) string and returns array of values for manipulation
+
+// Parse RGB Values from rbg(#,#,#) string.
 function getRGBValues(color){
     let rgb = color;
     rgb =  rgb.substring(4, rgb.length-1)
@@ -334,33 +339,28 @@ function getPixels(){
     return (document.querySelectorAll('.pixel'));
 
 }
-
-
-
-
-init();
-
-// Wake up helpers and generate default grid and palette.
-function init(){
-    
-    changeGridSize(4);    
-    createColorGradient();
-    
-    colorizePalette();
-    selectColorFromPalette();
-    setRainbowTool()
-    setCurrentSelection(currentColor);
-    updateGridOnSlider();
-    colorToolset();
-    toggleGrid();
-    draw();
-    //console.log(getColor('grid2'));
-    // Create listener to clear palette (should seperate this out?)
+// Create listeners for various inputs
+function loadUI(){
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      
         
         eraseCanvasContent();
     });
+
+    const canvasColors = document.querySelectorAll('.canvas-picker');
+    canvasColors.forEach(color => {
+        color.addEventListener('click', () => {
+            console.log(color.id);
+        updateCanvasColor(color.id)
+        });
+        });
+    
+    
+
+
+
+
+
     const fillBtn = document.querySelector('#fill');
     //console.log(fillBtn);
     fillBtn.addEventListener('click', () => fill());
@@ -408,5 +408,27 @@ function init(){
        }
 
     });
+
+
+
+}
+
+init();
+
+// Wake up helpers and generate default grid and palette.
+function init(){
+    
+    // Wakeup calls
+    changeGridSize(CANVAS_SIZE_DEFAULT);  
+    createColorGradient();
+    colorizePalette();
+    selectColorFromPalette();
+    setRainbowTool()
+    setCurrentSelection(currentColor);
+    updateGridOnSlider();
+    colorToolset();
+    toggleGrid();
+    draw();
+    loadUI();
 }
 
