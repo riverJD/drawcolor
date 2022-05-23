@@ -4,7 +4,8 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-        
+    font-family: Georgia, 'Times New Roman', Times, serif;  
+
     margin: 0px;
     min-height: 100vh;    
     /* default */
@@ -17,9 +18,21 @@ p, h4, h3, h2{
 }
 
 #title{
+    align-self: flex-end;
     background-color: #dcedf5;
-    padding: 10px 100px;
-    flex: 0 3 auto;
+    padding: 10px 20px 10px 20px;
+    width: 510px;
+    flex: 0 4 20px;
+    margin-right: 20%;
+    margin-bottom: -68px;
+    text-align: center;
+    font-size: 40px;
+    font-style: oblique;
+    font-weight: 500;
+    border: 1px solid #dcedf5;
+    border-radius: 10px;
+    color: black;
+    text-shadow: 3px 2px #39505a;
 }
 
 input{
@@ -116,9 +129,10 @@ footer{
 
 #canvas-flex{
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
     justify-content: center;
     flex: 0 1 600px;
+    gap: 20px;
     
 
 }
