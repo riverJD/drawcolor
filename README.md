@@ -1,41 +1,59 @@
-# drawcolor
+# Color
 
+A brief description of what this project does and who it's for
 
+A simple drawing and coloring platform. 
 
-to do:
+## Tools:
 
-    ~~create grid~~
-    ~~create palette~~
-        can regenerate palette based on custom colors
-    ~~basic flexbox structure~~
-
-~~custom color function~~
-    ~~take RGB input (add wheel/pallete???)~~
-    ~~assign to new current seletion cell~~
-
-~~listener - click or hover?~~ *toggle mode option?*
-
-create menu
-    ~select from fill, pen, splatter(random), or erase~
-
-        ~~fill - set all cells to set color~~
-        ~~pen - one grid at a time/default setting~~
-          ~~switch mode - hover/click~~
-        splatter - randomize spots with set color on page
-        ~~erase - set grid color back to canvas color~~
-
-    create pallet
-        ~~basic colors first~~
-        ~~put them right on page~~
-        modal for custom color
-
-rainbow 
-    ~~randomly generate rbg values for each color action~~
+Pen: One 'pixel' colored per click
+    default
     
+Brush(mode): Paint canvas without clicking
+    button or 'b' key to toggle
+    
+Fill: Paint all empty spots with selected color
+    will only fill 'empty' canvas spaces
 
-styling
-    set canvas color (defaults: white, light beige, grey, black)
-    set background color (light pastel palletes)
-    paper, antique, white, pale blue, pale pink, lavender, etc
-~~grab header and footer from samurai game~~
-    make boilerplate from this
+Erase: Erase paint from canvas
+    button or 'e' key to toggle
+    will work in either pen or brush mode
+
+Rainbow: Paints randomly colored pixels
+    button or 'r' key to toggle
+    will work in either pen or brush mode
+
+Splatter: Randomly spray selected color on canvas  
+    not currently enabled
+
+## Features
+
+- Toggle easily between draw modes
+    keyboard toggles for brush, rainbow and erase modes
+- Previous color saved
+- Palette gradient system 
+- Resizable grid (changed pixels size)
+- Choose between several canvas colors
+
+### Future
+
+- Palette themes
+    custom palette option, including gradient generation
+- Changeable webpage themes
+- Splatter mode
+- Save creation image
+
+
+## Creator notes
+This project is really just to learn more about javascript and
+css.  Learning javascript syntax and coding style, and focusing on messing with flexbox 
+certainly made my brain kind of dumb when it comes to writing clean code.
+
+I would like to refactor some of the code and certainly seperate code blocks
+into different classes/multiple files. I am trying not to get 'too ahead' of the curriculum
+so i don't burn all my time and energy on something that i just find interesting.
+The CSS is especially messy and i welcome and tips on organizing there.
+I will certainly be breaking things up into smaller chunks in the future. As it is there are
+several dozen named functions. 
+
+    

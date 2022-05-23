@@ -60,8 +60,6 @@ function updateGridOnSlider(){
 
     let slider = document.querySelector('.slider');
     slider.addEventListener('change', (e) => {
-        //console.log(e);
-        //console.log(slider.value);
         changeGridSize(slider.value);
         draw();
     }); 
@@ -129,7 +127,6 @@ function disableBrushMode(){
     const canvas = document.querySelectorAll('.brush');
     canvas.forEach(pixel => {    
         pixel.classList.remove('brush');
-        console.log(pixel);
     })
 
     const brush = document.querySelector('#brush-mode');
@@ -189,7 +186,6 @@ function setRainbowTool(){
 function colorToolset(){
     const toolsCanvas = document.querySelectorAll('.canvasColor');
     toolsCanvas.forEach(cell => {
-        console.log(BG_COLOR);
         cell.style.backgroundColor = BG_COLOR;
     });
     const toolsCurrent = document.querySelectorAll
@@ -202,8 +198,6 @@ function eraseCanvasContent(){
 }
 // Fill canvas from 'Current Selection' or override
 function fill(color){
-    console.log('filling');
-
     // Allow override
     if (color == undefined){
         fill(currentColor);
@@ -211,7 +205,6 @@ function fill(color){
 
    getPixels().forEach((pixel) => {
        if ((getColor(pixel.id)) == BG_COLOR){
-           //console.log(getColor(pixel.id) + " " +BG_COLOR);
            setColor(pixel.id, color);
        }
     }
@@ -227,9 +220,7 @@ function getColor(cellID){
     }
 
 function setColor(cellID, color){
-    //console.log('setting');
     const selectedColor = document.querySelector(`#${cellID}`);
-    //console.log(selectedColor + color);
     selectedColor.style.backgroundColor = color;
 }
 // Set 'Current Selection' to specified color
@@ -253,7 +244,6 @@ function setPreviousSelection(){
 }
 
 
-
 // Enable us to grab a color from palette and assign it to Current Selection
 function selectColorFromPalette(){
     const selectedColor = document.querySelector('.current-color');
@@ -268,7 +258,6 @@ function selectColorFromPalette(){
     // Enable custom colors
     const customColor = document.querySelector('#custom-picker');
     customColor.addEventListener('input', () => {
-        console.log(customColor.value)
         setCurrentSelection(customColor.value)
      });
 }
@@ -307,7 +296,7 @@ function createColorGradient(){
         let red = getRGBValues(rgb)[0];
         let green = getRGBValues(rgb)[1];
         let blue = getRGBValues(rgb)[2];
-        //console.log(e.getAttribute('data-color'))
+
         // Set color of cell reflecting parent
         setPaletteCellColor(e.id, e.getAttribute('data-color'))
         
@@ -364,12 +353,12 @@ function getPixels(){
 
 // Edit BG Color, will switch CSS sheets (disabled)
 function setBGColor(){
-const body = document.querySelector('body');
-const menu = document.querySelectorA
-const buttons = document.querySelectorAll('.bg-color-button');
-buttons.forEach(button => {
-    let color = button.getAttribute('data-color');
-    button.style.backgroundColor = color;
+    const body = document.querySelector('body');
+    const menu = document.querySelectorA
+    const buttons = document.querySelectorAll('.bg-color-button');
+    buttons.forEach(button => {
+        let color = button.getAttribute('data-color');
+        button.style.backgroundColor = color;
     })
 }
 
@@ -385,14 +374,12 @@ function startListeners(){
     const canvasColors = document.querySelectorAll('.canvas-picker');
     canvasColors.forEach(color => {
         color.addEventListener('click', () => {
-            console.log(color.id);
         updateCanvasColor(color.id)
  
         });
         });
 
     const fillBtn = document.querySelector('#fill');
-    //console.log(fillBtn);
     fillBtn.addEventListener('click', () => fill());
     
     const eraser = document.querySelector('#eraserbtn');
@@ -433,7 +420,7 @@ function startListeners(){
 
 
     const keyboard = window.addEventListener('keydown', (e) => {
-        console.log(e.key);
+
 
         switch(e.key){
             case 'b': 
