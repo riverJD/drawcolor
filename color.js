@@ -234,12 +234,26 @@ function setColor(cellID, color){
 }
 // Set 'Current Selection' to specified color
 function setCurrentSelection(color){
+    
+    setPreviousSelection();    
+    
     currentColor = color;
+
     const currentSelection = document.querySelectorAll('.current-color');
     currentSelection.forEach(cell => {
         cell.style.backgroundColor = color;
     })
 }
+
+function setPreviousSelection(){
+
+    const prevSelection = document.querySelector('#previous-color');
+
+    prevSelection.style.backgroundColor = currentColor;
+}
+
+
+
 // Enable us to grab a color from palette and assign it to Current Selection
 function selectColorFromPalette(){
     const selectedColor = document.querySelector('.current-color');
@@ -254,6 +268,7 @@ function selectColorFromPalette(){
     // Enable custom colors
     const customColor = document.querySelector('#custom-picker');
     customColor.addEventListener('input', () => {
+        console.log(customColor.value)
         setCurrentSelection(customColor.value)
      });
 }
@@ -263,7 +278,7 @@ function colorizePalette(){
     
     const palette = document.querySelectorAll('.color-picker');
     palette.forEach(color => { 
-        const colorID = color.getAttribute('id');
+        const colorID = color.getAttribute('data-color');
         color.style.backgroundColor = colorID;
     })
 }
@@ -277,35 +292,37 @@ function setPaletteCellColor(colorHeadID, color){
     const colorType = document.getElementById(colorHeadID);
     let cell = document.createElement('input');
    
-    setAttributes(cell, {"class": "color-picker", "id": color, "type": "button"})
+    setAttributes(cell, {"class": "color-picker", "id": color, "type": "button", "data-color": color})
     colorType.appendChild(cell);
 }
 // This will generate RBG color values based on a parent cell and 
 // make a call to generate a child cell.
-function createColorGradient(){
-    let createdCount = 0;
+function createColorGradient(){  
+
     let colors = document.querySelectorAll('.color-type');
     colors.forEach( e => {
 
-    let red = getRGBValues(e.id)[0];
-    let green = getRGBValues(e.id)[1];
-    let blue = getRGBValues(e.id)[2];
-    
-    // Set color of cell reflecting parent
-    setPaletteCellColor(e.id, e.id)
-    
-    // Set color of children
-    for (let i = 1; i < PALETTE_SIZE; i++)
-    {
-        red = Math.round(red - (red * PALETTE_GRADIENT_PERCENTAGE ));
-        green = Math.round(green - (green * PALETTE_GRADIENT_PERCENTAGE));
-        blue = Math.round(blue - (blue * PALETTE_GRADIENT_PERCENTAGE));
-        let newColor = `rgb(${red},${green},${blue})`;
-        setPaletteCellColor(e.id, newColor);
-    }
+
+        let rgb = (e.getAttribute('data-color'));
+        let red = getRGBValues(rgb)[0];
+        let green = getRGBValues(rgb)[1];
+        let blue = getRGBValues(rgb)[2];
+        //console.log(e.getAttribute('data-color'))
+        // Set color of cell reflecting parent
+        setPaletteCellColor(e.id, e.getAttribute('data-color'))
+        
+        // Set color of children
+        for (let i = 1; i < PALETTE_SIZE; i++)
+        {
+            red = Math.round(red - (red * PALETTE_GRADIENT_PERCENTAGE ));
+            green = Math.round(green - (green * PALETTE_GRADIENT_PERCENTAGE));
+            blue = Math.round(blue - (blue * PALETTE_GRADIENT_PERCENTAGE));
+            let newColor = `rgb(${red},${green},${blue})`;
+            setPaletteCellColor(e.id, newColor);
+        }
     })
     // Add black to greyscale palette
-    setPaletteCellColor('rgb(255, 255, 255)','black');
+    setPaletteCellColor('greyscale','black');
     }
 
 // Will generate a series of 'parent' cells for palette. 
@@ -334,7 +351,7 @@ function setAttributes(element, attributes)
     });
 }
 
-function getRandomColorValue(min, max) {
+function getRandomColorValue() {
      min = Math.ceil(0);
      max = Math.floor(255);
     return Math.floor(Math.random() * (max - min) + min);
@@ -357,11 +374,8 @@ buttons.forEach(button => {
 }
 
 
-
-
-
 // Create listeners for various inputs
-function loadUI(){
+function startListeners(){
     const button = document.querySelector('#clear-canvas');
     button.addEventListener('click', (e) => {      
         
@@ -373,10 +387,9 @@ function loadUI(){
         color.addEventListener('click', () => {
             console.log(color.id);
         updateCanvasColor(color.id)
+ 
         });
         });
-    
-
 
     const fillBtn = document.querySelector('#fill');
     //console.log(fillBtn);
@@ -409,6 +422,15 @@ function loadUI(){
     gridlines.addEventListener('click', () => {
         (gridActive ? toggleGrid('off') : toggleGrid('on'));
     })
+
+    let helpModal = document.querySelector('#help-modal');
+    let helpButton = document.querySelector('#help-button');
+    let closeButton = document.querySelector('.closeModal');
+
+    helpButton.addEventListener('click', () => helpModal.style.display = "block");
+    
+    closeButton.addEventListener('click', () => helpModal.style.display = 'none');
+
 
     const keyboard = window.addEventListener('keydown', (e) => {
         console.log(e.key);
@@ -447,6 +469,6 @@ function init(){
     toggleGrid();
     draw();
     setBGColor();
-    loadUI();
+    startListeners();
 }
 

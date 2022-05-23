@@ -16,6 +16,12 @@ p, h4, h3, h2{
     margin: 5px;
 }
 
+#title{
+    background-color: #dcedf5;
+    padding: 10px 100px;
+    flex: 0 3 auto;
+}
+
 input{
     margin: 0;
 }
@@ -110,6 +116,7 @@ footer{
 
 #canvas-flex{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     flex: 0 1 600px;
     
@@ -121,6 +128,7 @@ footer{
     flex: 0 auto;
     min-height: 400px;
     min-width: 400px;
+    max-width: 400px;
     margin: 20px;
 
 }
@@ -260,13 +268,24 @@ footer{
     flex-direction: column;
 }
 
+#current-previous{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 #current-color{
-    border: 2px solid white;
+    border: 2px solid black;
+    box-shadow: 1px 1px;
     border-radius: 10px;
     height: 35px;
     width: 35px;
 }
 
+#previous-color{
+    height: 17px;
+    width: 17px;
+    border-radius: 5px;
+}
 
 
 #custom #custom-picker{
@@ -288,7 +307,7 @@ button{
     border-style: outset;
     background-color: #dcedf5;
     font-weight: 600;
-    border-radius: 8px;
+    border-radius: 5px;
     height: 24px;
 }
 
@@ -389,7 +408,6 @@ button:active{
     width: 15px;
 }
 
-
 .canvas-picker#antiquewhite{
     background-color: antiquewhite;
 }
@@ -406,3 +424,37 @@ button:active{
     background-color:black;
 }
 
+.modal {
+    display: none;
+    position:fixed;
+    z-index: 1;
+    top: 100px;
+    left: 300px;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    background-color: white;
+    background-color: #dcedf573;
+}
+
+.modal-content{
+    background-color: rgba(255, 255, 240, 0.479);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid black;
+    width: 80%;
+}
+
+.closeModal {
+    color: #576e79;
+    float: right;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.close:hover,
+.close:focus {
+    color:black;
+    text-decoration: none;
+    cursor:pointer;
+}

@@ -15,7 +15,7 @@
             <li class="link"><a href="./index.html">	<span class="block-line"><span><span style="color:#b50b0b;">C</span><span style="color:#bd0fd4;">o</span><span style="color:#001bb3;">l</span><span style="color:#adc706;">o</span><span style="color:#03ad1a;">r</span></span></span></a></li>
             <li class="link inactive">Link 3</li>
         </ul>
-        </div><h3 class='title'>Color</h3>
+        </div>
     </header>
     
     <!-- Toggle BG Colors -->
@@ -27,7 +27,7 @@
         <input class="bg-color-button" type="button" data-color="mintcream">
         <input class="bg-color-button" type="button" data-color="aliceblue">
       </div>
-    
+     
 
     <div class="project-content">
     
@@ -80,36 +80,39 @@
             <!-- DEFAULT VALUES                         -->
             <!--Palette will be generated based on these-->
             <!--color values-->
-            <div class="color-type" id="rgb(255, 0, 0)">       
+            <div class="color-type" id="palette1" data-color="rgb(255, 0, 0)">       
             </div>
-            <div class="color-type" id="rgb(255, 127, 0)">
+            <div class="color-type" id="palette2" data-color="rgb(255, 127, 0)"> 
             </div>
-            <div class="color-type" id="rgb(255, 255, 0)">
+            <div class="color-type" id="palette3" data-color="rgb(255, 255, 0)">
             </div>
-            <div class="color-type" id="rgb(0, 255, 0)">
+            <div class="color-type" id="palette4" data-color="rgb(0, 255, 0)">
             </div>
-            <div class="color-type" id="rgb(0, 255, 127)">
+            <div class="color-type" id="palette5" data-color="rgb(0, 255, 127)">
             </div>
-            <div class="color-type" id="rgb(0, 127, 255)">
+            <div class="color-type" id="palette6" data-color="rgb(0, 127, 255)">
             </div>
-            <div class="color-type" id="rgb(0, 0, 255)">
+            <div class="color-type" id="palette7" data-color="rgb(0, 0, 255)">
             </div>
-            <div class="color-type" id="rgb(127, 0, 255)">
+            <div class="color-type" id="palette8" data-color="rgb(127, 0, 255)">
             </div>
-            <div class="color-type custom-color" id="rgb(0, 0, 0)"></div>
+            <div class="color-type custom-color inactive" data-color="rgb(0, 0, 0)" id="customPalette"></div>
             <div id='custom'><input type="color" id="custom-picker"></div>
             </div>
-            <div class="greyscale color-type" id="rgb(255, 255, 255)"><button id="abort">?</button>
+            <div class="greyscale color-type" id="greyscale" data-color="rgb(255, 255, 255)"><button id="help-button">?</button>
             </div>
             </div>
             <!-- CUSTOMER COLOR INPUT-->
-           
+            
             <!-- CURRENTLY SELECTED COLOR-->
-            <p>Current Selection</p><div class='current-color' id='current-color'></div>
-        </div>
+            <div id="current-previous">
+                <div class='current-color' id='current-color'></div>
+                <div id='previous-color'></div></div>
+            </div>
     </div>
     
     <div id="canvas-flex">
+        <h3 id='title'>Color</h3> 
     <!--actual canvas starts here-->
 
     <div id="canvas">
@@ -141,6 +144,12 @@
 </div>
     </div>
     </div>
+    <div id="help-modal" class="modal">
+        <div class="modal-content">Custom Palette Generation Will Soon Come Here<span class="closeModal">&times;</span></div>
+
+    </div>
+
+
     <footer><div></div><div class="footer-text"><p>copyright © 2022</p><div class="footer-text" id="namelink"><a href=https://github.com/riverJD/>river</div> <img src="img/GitHub-Mark-64px.png" width="24" height="24"></div><div></div></a></div></footer>
 
     
